@@ -52,34 +52,14 @@
 }
 \pagestyle{main}
 
-% References
-%\usepackage[backend=bibtex,style=numeric,maxnames=99]{biblatex}
-%\addbibresource{/home/brian/repos/references/references.bib}
-%\renewcommand{\subtitlepunct}{\addcolon\space}
-%% Remove default quotes around title.
-%\DeclareFieldFormat[article,inproceedings,unpublished]{citetitle}{#1}
-%\DeclareFieldFormat[article,inproceedings,unpublished]{title}{#1}
-%\DeclareFieldFormat[thesis]{citetitle}{\emph{#1}}
-%\DeclareFieldFormat[thesis]{title}{\emph{#1}}
-%% Don't print pubstate field.
-%\AtEveryCitekey{\clearfield{pubstate}}
-
 % Packages for CV environment
 \usepackage{array}% required for defining newcolumntype with custom vrule
 \usepackage{longtable}% normal \tabular environment does not allow page breaks
 \setlength{\LTpre}{0pt}% glue before longtable
 \addtolength{\LTpost}{0pt}% glue after longtable
 
-% Hyper links and PDF info
+% Hyperlinks
 \usepackage[breaklinks]{hyperref}
-%\hypersetup{%
-%  colorlinks  = false,
-%  pdfauthor   = {\name},
-%  pdftitle    = {Curriculum Vitae -- \name},
-%  pdfsubject  = {Curriculum Vitae},
-%  pdfkeywords = {\name, CV, linguistics},
-%  pdfpagemode = UseNone
-%}
 \usepackage[hyphenbreaks]{breakurl}
 \usepackage{graphicx}
 \setlength{\parindent}{0pt}
@@ -92,9 +72,8 @@
 \definecolor{green}{HTML}{008000}
 % \definecolor{green}{HTML}{39B54A}
 
-% Force marginnotes to be on the RHS
+% Force marginnotes to be on the LHS
 \usepackage{etoolbox}
-
 \makeatletter
 \patchcmd{\@mn@margintest}{\@tempswafalse}{\@tempswatrue}{}{}
 \patchcmd{\@mn@margintest}{\@tempswafalse}{\@tempswatrue}{}{}
@@ -143,8 +122,6 @@
 \end{center}
 
 \vspace{1em}
-
-%\textbf{Citizenship:} British \hfill \textbf{Languages:} English (native), French (advanced), German (beginner)
 
 \section*{Contact Information}
 \begin{minipage}[t]{0.5\textwidth}
