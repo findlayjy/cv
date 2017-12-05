@@ -88,10 +88,16 @@
 \newcommand{\bodywidth}{0.77}
 
 \newcommand{\oa}[2]{\marginnote{[\textcolor{#1}{\href{#2}{\texttt{paper}}}]}} % For open access links
-\newcommand{\handout}[1]{\marginnote{\href{http://users.ox.ac.uk/~sjoh2787/#1}{\texttt{[handout]}}}}
-\newcommand{\poster}[1]{\marginnote{\href{http://users.ox.ac.uk/~sjoh2787/#1}{\texttt{[poster]}}}}
 
-\newcommand{\slides}[1]{\marginnote{\href{http://users.ox.ac.uk/~sjoh2787/#1}{\texttt{[slides]}}}}
+\newcommand{\marginlink}[2]{\marginnote{\href{http://users.ox.ac.uk/~sjoh2787/#2}{\texttt{[#1]}}}}
+
+\newcommand{\handout}[1]{\marginlink{handout}{#1}}
+\newcommand{\poster}[1]{\marginlink{poster}{#1}}
+\newcommand{\slides}[1]{\marginlink{slides}{#1}}
+% \newcommand{\handout}[1]{\marginnote{\href{http://users.ox.ac.uk/~sjoh2787/#1}{\texttt{[handout]}}}}
+% \newcommand{\poster}[1]{\marginnote{\href{http://users.ox.ac.uk/~sjoh2787/#1}{\texttt{[poster]}}}}
+% \newcommand{\slides}[1]{\marginnote{\href{http://users.ox.ac.uk/~sjoh2787/#1}{\texttt{[slides]}}}}
+
 
 \newcolumntype{L}{>{\raggedright}p{\datewidth\textwidth}}
 \newcolumntype{R}{p{\bodywidth\textwidth}}
@@ -146,13 +152,13 @@ Syntax, semantics, grammatical theory and the syntax-semantics interface (especi
 \begin{cvsection}
   2015-- & \parbox[t]{\bodywidth\textwidth}{%
     D.Phil. in Comparative Philology \& General Linguistics, \\University of Oxford.\\
-    {\footnotesize Thesis title: \emph{Multiword expressions and the lexicon: a TAG-LFG approach}}\\
-    {\footnotesize Supervisors: Mary Dalrymple, Ash Asudeh}
+    {\footnotesize Thesis title: \emph{Multiword expressions and the lexicon: a TAG-LFG approach}.}\\
+    {\footnotesize Supervisors: Mary Dalrymple, Ash Asudeh.}
   }\\
   2012--2014 & \parbox[t]{\bodywidth\textwidth}{%
     M.Phil. (with distinction) in General Linguistics \& Comparative Philology, University of Oxford.\\
-    {\footnotesize Thesis title: \emph{The prepositional passive: a Lexical Functional account}}\\
-    {\footnotesize Supervisor: Mary Dalrymple}
+    {\footnotesize Thesis title: \emph{The prepositional passive: a Lexical Functional account}.}\\
+    {\footnotesize Supervisor: Mary Dalrymple.}
   }\\
   2011 & \parbox[t]{\bodywidth\textwidth}{%
     Graduate Programme in Linguistics, McGill University.
@@ -160,6 +166,12 @@ Syntax, semantics, grammatical theory and the syntax-semantics interface (especi
   2007--2011 & \parbox[t]{\bodywidth\textwidth}{%
     B.A. (with First Class Honours) in Modern Languages (French) \& Linguistics, University of Oxford.
   }
+\end{cvsection}
+
+\section*{Teaching Qualifications}
+
+\begin{cvsection}
+  2017\marginlink{portfolio}{portfolio-JYF-submission.pdf} & SEDA-PDF Supporting Learning award (mapped to Descriptor 1 of the UK Professional Standards Framework: equivalent to Associate Fellow of the Higher Education Academy).
 \end{cvsection}
 
 \section*{Employment}
@@ -193,11 +205,13 @@ Syntax, semantics, grammatical theory and the syntax-semantics interface (especi
 \subsection*{Articles in Refereed Conference Proceedings}
 
 \begin{cvsection}
+  Forthcoming & Jamie Y. Findlay. Multiword expressions and lexicalism. In Miriam Butt and Tracy Holloway King (eds.), \emph{Proceedings of the LFG17 Conference}. Stanford, CA: CSLI Publications.\\
+
   2017\oa{gold}{http://aclweb.org/anthology/W17-1709} & Jamie Y. Findlay. Multiword expressions and lexicalism: the view from LFG. In \emph{Proceedings of the 13th Workshop on Multiword Expressions (MWE 2017)}, 73--79. Association for Computational Linguistics.\\
 
   2016\oa{gold}{http://web.stanford.edu/group/cslipublications/cslipublications/HPSG/2016/headlex2016-findlay.pdf} & Jamie Y. Findlay. The prepositional passive in Lexical Functional Grammar. In Doug Arnold, Miriam Butt, Berthold Crysmann, Tracy Holloway King, and Stefan M\"uller (eds.), \emph{Proceedings of the Joint 2016 Conference on Head-driven Phrase Structure Grammar and Lexical Functional Grammar}, 255--275. Stanford, CA: CSLI Publications.
 \end{cvsection}
- \newpage
+
 \subsection*{Refereed Presentations}
 
 \begin{cvsection}
@@ -219,7 +233,7 @@ Syntax, semantics, grammatical theory and the syntax-semantics interface (especi
 \begin{cvsection}
   31 Jan., 2017\handout{SOAS_Presentation_p-passive.pdf} & The pseudopassive: not so phoney after all. Presented at the Linguistics Departmental Seminar Series, School of Oriental and African Studies (SOAS), London.\\
 \end{cvsection}
-
+\newpage
 \subsection*{Other Presentations}
 
 \begin{cvsection}
@@ -249,7 +263,7 @@ Syntax, semantics, grammatical theory and the syntax-semantics interface (especi
 
 \subsubsection*{Graduate classes}
 \begin{cvsection}
-2017        & Formal foundations of linguistics -- group size: \textasciitilde{}23\\
+2017        & Formal foundations of linguistics -- group size: \textasciitilde{}23.\\
 2015--2016	&	Introduction to syntax -- group size: \textasciitilde{}25.\\
 2014			  & Introduction to phonology -- group size: \textasciitilde{}12.
 \end{cvsection}
@@ -272,9 +286,9 @@ Syntax, semantics, grammatical theory and the syntax-semantics interface (especi
 
 \begin{cvsection}
 %\parbox[t]{\datewidth\textwidth}{15 \& 22 Feb.,\\\hspace*{0.5em} 2017}		& Two \LaTeX{} workshops for linguistics graduate students.\\
-	15 Feb., 2017\handout{latex-basics.pdf}		& \parbox[t]{\bodywidth\textwidth}{Workshop: `\LaTeX{} basics'}\\
+	15 Feb., 2017\handout{latex-basics.pdf}		& \parbox[t]{\bodywidth\textwidth}{Workshop: `\LaTeX{} basics'.}\\
   %
-	22 Feb., 2017\handout{latex-advanced-topics.pdf}		& \parbox[t]{\bodywidth\textwidth}{Workshop: `Advanced topics in \LaTeX'\\
+	22 Feb., 2017\handout{latex-advanced-topics.pdf}		& \parbox[t]{\bodywidth\textwidth}{Workshop: `Advanced topics in \LaTeX'.\\
   {\footnotesize(Two workshops to introduce graduate students in linguistics to \LaTeX.)}}\\
   %
 	25 Jan., 2017\handout{Socio_presentation.pdf}		& \parbox[t]{\bodywidth\textwidth}{`Language and identity: the view from linguistics'.\\{\footnotesize(An introduction to 							sociolinguistics for first year English language and literature undergraduates.)}}
@@ -321,9 +335,11 @@ Syntax, semantics, grammatical theory and the syntax-semantics interface (especi
 \subsection*{To the profession}
 
 \begin{cvsection}
-Reviewer	&	\textit{Journal of Linguistics}.
+Reviewer	&	\textit{Journal of Linguistics,}\\[-0.3em]
+          & \textit{Conference of the Student Organisation of Linguistics in Europe (ConSOLE)}.\\
+Marker    & \textit{UK Linguistics Olympiad}.
 \end{cvsection}
-\newpage
+
 \section*{Associations}
 
 \begin{cvsection}
@@ -337,7 +353,7 @@ Reviewer	&	\textit{Journal of Linguistics}.
 \section*{Languages}
 
 \begin{cvsection}
-  \textbf{Natural}      & English~(native), French~(advanced), German~(basic), Latin~(basic). \\
+  \textbf{Natural}      & English~(native), French~(advanced), Latin~(intermediate), \\[-0.3em] & German~(basic). \\
   \textbf{Programming}  & Bash (Unix shell), Python. \\
   \textbf{Markup}       & \LaTeX\slash Bib\TeX, HTML\slash CSS.
 \end{cvsection}
