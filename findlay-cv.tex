@@ -2,7 +2,9 @@
 %                                                                              %
 %  file:   findlay-cv.tex                                                      %
 %  author: Jamie Findlay <jy.findlay@gmail.com>                                %
-%  With thanks to Brian Buccola <brian.buccola@gmail.com> for the template     %
+%                                                                              %
+%  This document heavily inspired by the beautiful CVs of Brian Buccola        %
+%  (http://brianbuccola.com/) and Tim Rocktäschel (https://rockt.github.io/)   %
 %                                                                              %
 %==============================================================================%
 
@@ -20,29 +22,85 @@
 
 \newcommand{\name}{Jamie Y. Findlay}
 
+\usepackage{graphicx}
+
 % Font settings
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{microtype}
-\usepackage[sc,osf]{mathpazo}% Palatino font, w/ smallcaps & old-style figures
+\usepackage[normalem]{ulem}
+%
+\usepackage[sfdefault,scaled=.85]{FiraSans}
+\usepackage{newtxsf}
+%
 \linespread{1.05}
-\usepackage{marvosym}% provides \Letter and \Telefon
 
-% Margins
-\usepackage[margin=1.5in,twoside,centering,marginparsep=0.8cm]{geometry}
+% Margins and columns
+\usepackage[margin=1.2in,twoside,centering,marginparsep=0.8cm]{geometry}
 
-% Section fonts
+% No indent for new paragraphs
+\setlength{\parindent}{0pt}
+
+% Ratios for left and right columns in cvsections and elsewhere
+\newcommand{\datewidth}{0.15}
+\newcommand{\bodywidth}{0.82}
+
+% Avoid hyphenation across lines
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
+
+% Some lengths
+\newlength{\rulelength}% The length of the rule in section headings
+\setlength{\rulelength}{\datewidth\textwidth}
+% \addtolength{\rulelength}{11pt}
+%
+\newlength{\indentlength}% The length of the indent in the \Ref command
+\setlength{\indentlength}{29pt}
+% \settowidth{\indentlength}{2017}%
+% \addtolength{\indentlength}{1em}%
+
+% Set some colours
+\usepackage[svgnames]{xcolor}
+\definecolor{gold}{HTML}{c69c6e}
+\definecolor{green}{HTML}{008000}
+% \definecolor{green}{HTML}{39B54A}
+\definecolor{oxfordblue}{RGB}{4,30,66}
+
+% Section headings
 \usepackage{titlesec}
-\titleformat*{\section}{\normalfont\Large\scshape}
-\titleformat*{\subsection}{\normalfont\large\bfseries}
-\titleformat*{\subsubsection}{\normalfont\normalsize\itshape}
+\titleformat{\section}{\normalfont\Large\scshape}%
+{}{}%
+{\color{oxfordblue}\rule[0.4ex]{\rulelength}{2pt}\hspace*{11pt}}
+%
+\titleformat{\subsection}{\normalfont\large\bfseries}%
+{}{}%
+% {\rule[0.4ex]{\rulelength}{1pt}\hspace*{11pt}}
+{}
+%
+\titleformat{\subsubsection}{\normalfont\normalsize\itshape}%
+{}{}%
+{\rule[0.4ex]{\rulelength}{1pt}\hspace*{11pt}}
+
+% Different heading command for research experience sections
+\newcommand{\REx}[2]{%
+\vspace*{0.5\baselineskip}%
+% \rule[0.4ex]{\rulelength}{1pt}\hspace*{11pt}%
+{\large\textbf{#1}\hfill\textnormal{[#2]}}%
+\vspace*{0.7\baselineskip}%
+}
 
 % Headers, footers, and page styles
 \usepackage{titleps}
 \newpagestyle{main}[\footnotesize]{%
   \headrule
-  \sethead[Curriculum Vit\ae][][Jamie Y. Findlay]
-          {Curriculum Vit\ae}{}{Jamie Y. Findlay}
+  \sethead[][][\name]%
+          {
+          %Curriculum Vit\ae
+          }%
+          {}%
+          {\name}
   \setfoot[][\thepage][\scriptsize \today]
           {}{\thepage}{\scriptsize \today}
 }
@@ -58,19 +116,23 @@
 \setlength{\LTpre}{0pt}% glue before longtable
 \addtolength{\LTpost}{0pt}% glue after longtable
 
+% Main body sections
+\newcolumntype{L}{>{\raggedleft}p{\datewidth\textwidth}}
+\newcolumntype{R}{p{\bodywidth\textwidth}}
+%
+\newenvironment{cvsection}{%
+  \setlength{\extrarowheight}{0.70ex}
+  \begin{longtable}[l]{@{} L R @{}}
+}{%
+  \end{longtable}
+}
+
 % Hyperlinks
 \usepackage[breaklinks]{hyperref}
-\usepackage[hyphenbreaks]{breakurl}
-\usepackage{graphicx}
-\setlength{\parindent}{0pt}
+% \usepackage[hyphenbreaks]{breakurl}
 
+% Enable margin notes everywhere
 \usepackage{marginnote}
-
-%Set some colours
-\usepackage[svgnames]{xcolor}
-\definecolor{gold}{HTML}{c69c6e}
-\definecolor{green}{HTML}{008000}
-% \definecolor{green}{HTML}{39B54A}
 
 % Force marginnotes to be on the LHS
 \usepackage{etoolbox}
@@ -80,39 +142,99 @@
 \reversemarginpar
 \makeatother
 
+% Allow tables to fit to line width
+\usepackage{tabularx}
+
+% Icons
+\usepackage{fontawesome} % Provides icon commands
+\newcommand{\icon}[1]{\raisebox{-.2\dp\strutbox}{#1}} % Aligns icons vertically
+
+% Allow starred command names
+\usepackage{suffix}
+
 %==========%
 %  Macros  %
 %==========%
 
-\newcommand{\datewidth}{0.20}
-\newcommand{\bodywidth}{0.77}
+% For references list
+\newcounter{RefNo} % Counter for publications
 
-\newcommand{\oa}[2]{\marginnote{[\textcolor{#1}{\href{#2}{\texttt{paper}}}]}} % For open access links
+% The \Ref command takes three arguments: a x-ref label, a date, and the bibliographical info
+\newcommand\Ref[3]{%
+  \refstepcounter{RefNo}%
+  \hangindent=\indentlength%
+  \reversemarginpar\marginnote{[\theRefNo]}\normalmarginpar%
+  \label{#1}%
+  \textbf{#2}%
+  \hspace*{1em}%
+  #3%
+  \vspace*{0.7ex}%
+  }
 
-\newcommand{\marginlink}[2]{\marginnote{\href{http://users.ox.ac.uk/~sjoh2787/#2}{\texttt{[#1]}}}}
+% A starred version for presentations, which have a longer date
+\WithSuffix\newcommand\Ref*[3]{%
+  \refstepcounter{RefNo}%
+  \hangindent=\indentlength%
+  \reversemarginpar\marginnote{[\theRefNo]}\normalmarginpar%
+  \label{#1}%
+  \textbf{#2}%
+  \hspace*{0.5em}%
+  #3%
+  \vspace*{0.7ex}%
+  }
 
+% Commands for adding the margin links
+\newcommand{\marginlink}[2]{\marginnote{\hspace*{-1em}\href{http://users.ox.ac.uk/~sjoh2787/#2}{\texttt{[#1]}}}}
+%
 \newcommand{\handout}[1]{\marginlink{handout}{#1}}
 \newcommand{\poster}[1]{\marginlink{poster}{#1}}
 \newcommand{\slides}[1]{\marginlink{slides}{#1}}
-% \newcommand{\handout}[1]{\marginnote{\href{http://users.ox.ac.uk/~sjoh2787/#1}{\texttt{[handout]}}}}
-% \newcommand{\poster}[1]{\marginnote{\href{http://users.ox.ac.uk/~sjoh2787/#1}{\texttt{[poster]}}}}
-% \newcommand{\slides}[1]{\marginnote{\href{http://users.ox.ac.uk/~sjoh2787/#1}{\texttt{[slides]}}}}
 
+% Command for open access links, which takes a colour argument
+\newcommand{\oa}[2]{\marginnote{\hspace*{-1em}{\href{#2}{\texttt{[\textcolor{#1}{paper}]}}}}}
 
-\newcolumntype{L}{>{\raggedright}p{\datewidth\textwidth}}
-\newcolumntype{R}{p{\bodywidth\textwidth}}
+% Puts square brackets around label numbers when x-ref'd
+\newcommand{\sref}[1]{[\ref{#1}]}
 
-\newenvironment{cvsection}{%
-  \setlength{\extrarowheight}{0.70ex}
-  \begin{longtable}[l]{@{} L R @{}}
-  % Comment line above and uncomment line below to add gray vrule between date and body.
-  % \begin{longtable}{@{} L !{\myvrule} R @{}}
-}{%
-  \end{longtable}
+% A note macro
+\newcommand{\note}{\emph{Note: }}
+
+% Changing font for \LaTeX command because it looks gross in Fira Sans
+\WithSuffix\newcommand\LaTeX*{%
+  {%
+  \fontfamily{cmr}%
+  \selectfont\LaTeX%
+  }%
 }
 
+% Doing the same for \TeX for consistency
+\WithSuffix\newcommand\TeX*{%
+  {%
+  \fontfamily{cmr}%
+  \selectfont\TeX%
+  }%
+}
 
-\frenchspacing
+% Additional info notes for main body entries
+\newcommand{\Note}[2]{%
+\parbox[t]{\bodywidth\textwidth}{#1\\{\footnotesize #2}}%
+}
+
+% Labels for the left-hand column in main body entries
+\newcommand{\Label}[1]{%
+\textnormal{#1}%
+}
+
+% Subheadings in research experience
+\newcommand{\subhead}[1]{%
+\textsc{#1}:%
+}
+
+% Contact info environment
+\newcommand{\ContactInfo}[1]{%
+\parbox[c]{\hsize}{\raggedleft\footnotesize\it%
+#1}%
+}
 
 %========%
 %        %
@@ -120,221 +242,247 @@
 %        %
 %========%
 
+\frenchspacing
+
 \begin{document}
 
 \thispagestyle{first}
 
-\begin{center}
-  {\LARGE Curriculum Vit\ae\\
-  \Huge\textbf{Jamie Y. Findlay}\\}
-\end{center}
-
-\vspace{1em}
-
-\section*{Contact Information}
-\begin{minipage}[t]{0.5\textwidth}
- Centre for Linguistics and Philology,  \\
+\begin{tabularx}{\linewidth}{@{}lX@{}}
+{\Huge\textbf{\name}}%
+&\ContactInfo{%
+Centre for Linguistics and Philology\\
 Walton St., Oxford, OX1 2HG\\
-United Kingdom
-\end{minipage}
-\begin{minipage}[t]{0.55\textwidth}
- % \Telefon\ +1 312-945-6857 {\footnotesize (US)}\\
-  \Letter\  \href{mailto:jamie.findlay@ling-phil.ox.ac.uk}{\nolinkurl{jamie.findlay@ling-phil.ox.ac.uk}}\\
-  \Keyboard\ \url{http://jyfindlay.com}
-\end{minipage}
+% United Kingdom\\
+ \href{mailto:jamie.findlay@ling-phil.ox.ac.uk}{{\icon{\faEnvelopeO}\ jamie.findlay@ling-phil.ox.ac.uk}}\\
+ \href{http://jyfindlay.com}{\icon{\faChain}\ jyfindlay.com}\\
+ \href{http://www.linkedin.com/in/findlayjy}{\icon{\faLinkedinSquare}\ findlayjy}\\
+ \href{https://github.com/findlayjy}{\icon{\faGithub}\ findlayjy}
+}
+\end{tabularx}
+
+%%==========================================================================%%
 
 \section*{Research Interests}
 
-Syntax, semantics, grammatical theory and the syntax-semantics interface (especially Lexical Functional Grammar and Glue Semantics), philosophy of language, (critical) discourse analysis, language \& gender, language \& sexuality.
+\begin{cvsection}
+    &
+     Syntax, semantics, grammatical theory and the syntax-semantics interface (especially Lexical Functional Grammar and Glue Semantics), philosophy of language, pragmatics, (critical) discourse analysis, language \& gender, language \& sexuality.
+\end{cvsection}
+
+%%==========================================================================%%
 
 \section*{Education}
 
 \begin{cvsection}
-  2015-- & \parbox[t]{\bodywidth\textwidth}{%
-    D.Phil. in Comparative Philology \& General Linguistics, \\University of Oxford.\\
-    {\footnotesize Thesis title: \emph{Multiword expressions and the lexicon: a TAG-LFG approach}.}\\
-    {\footnotesize Supervisors: Ash Asudeh, Mary Dalrymple.}
-  }\\
-  2012--2014 & \parbox[t]{\bodywidth\textwidth}{%
-    M.Phil. (with distinction) in General Linguistics \& Comparative Philology, University of Oxford.\\
-    {\footnotesize Thesis title: \emph{The prepositional passive: a Lexical Functional account}.}\\
-    {\footnotesize Supervisor: Mary Dalrymple.}
-  }\\
-  2011 & \parbox[t]{\bodywidth\textwidth}{%
-    Graduate Programme in Linguistics, McGill University.
-  }\\
-  2007--2011 & \parbox[t]{\bodywidth\textwidth}{%
-    B.A. (with First Class Honours) in Modern Languages (French) \& Linguistics, University of Oxford.
-  }
+  2015--2018 (exp.) & \Note{%
+    \textbf{D.Phil.} in Comparative Philology \& General Linguistics.\\
+    University of Oxford.}%
+    {Thesis title: \emph{Multiword expressions and the lexicon}.\\
+    Supervisors: Ash Asudeh, Mary Dalrymple.}
+    \\
+  2012--2014 & \Note{%
+    \textbf{M.Phil.} (with distinction) in General Linguistics \& Comparative Philology.\\
+    University of Oxford.}%
+    {Thesis title: \emph{The prepositional passive: a Lexical Functional account}.\\
+    Supervisor: Mary Dalrymple.}
+    \\
+  2011 & \Note{%
+    Graduate Programme in Linguistics.\\
+    McGill University.}
+    {Attended for one term. GPA 3.92.}
+  \\
+  2007--2011 &
+    \parbox[t]{\bodywidth\textwidth}{\textbf{B.A.} (with First Class Honours) in Modern Languages (French) \& Linguistics.\\
+    University of Oxford.}
 \end{cvsection}
+
+%%==========================================================================%%
 
 \section*{Teaching Qualifications}
 
 \begin{cvsection}
-  2017\marginlink{portfolio}{portfolio-JYF-submission.pdf} & \parbox[t]{\bodywidth\textwidth}{%
-    SEDA-PDF Supporting Learning award. \\
-    {\footnotesize (Mapped to Descriptor 1 of the UK Professional Standards Framework: equivalent to Associate Fellow of the Higher Education Academy.)}%
-    }
+  2017 & \Note{%
+    SEDA-PDF Supporting Learning award.%
+    }%
+    {Mapped to Descriptor 1 of the UK Professional Standards Framework: equivalent to Associate Fellow of the Higher Education Academy.\\
+    My portfolio submission is available online \href{http://users.ox.ac.uk/~sjoh2787/portfolio-JYF-submission.pdf}{\uline{here}}.
+    }%
 \end{cvsection}
+
+%%==========================================================================%%
 
 \section*{Employment}
 
 \begin{cvsection}
-  Oct. 2014-- & Tutor, Faculty of Linguistics, Philology \& Phonetics, University of Oxford.\\
-  July 2012--	& Freelance linguistic consultant on various NLP tasks.\\
+  Since Oct. 2014 & Tutor, Faculty of Linguistics, Philology \& Phonetics, University of Oxford.\\
+  Since July 2012	& Freelance linguistic consultant on various NLP tasks.\\
   % Nov.--Dec. 2016	& Volunteer annotator, PARSEME shared task on automatic identification of verbal multiword expressions.\\
-  \parbox[t]{\datewidth\textwidth}{Dec. 2014--\\\hspace*{1em}Oct. 2015}	& Research Assistant, Oxford English Dictionary, Oxford University Press.\\
+  \parbox[t]{\datewidth\textwidth}{\raggedleft
+  Dec. 2014--\\Oct. 2015}
+  & Research Assistant, Oxford English Dictionary, Oxford University Press.\\
   Feb.--Sept. 2014	&  Annotator, Supportive Automated Feedback for Short Essay Answers (SAFeSEA) project, Department of Computer Science, University of Oxford.\\
   May--Sept. 2013	& Casual Research Assistant to Mary Dalrymple, Faculty of Linguistics, Philology \& Phonetics, University of Oxford.\\
 \end{cvsection}
 
-\section*{Scholarship}
-\textit{Note:} To the left of each item below, I provide a link to an accessible version. When that is a published version, I give an indication of its Open Access status by making the text \textcolor{gold}{gold} or \textcolor{green}{green}.
-
-\subsection*{Articles in Refereed Journals and Books}
-
-\begin{cvsection}
-  In preparation &  Mary Dalrymple and Jamie Y. Findlay. Lexical Functional Grammar. In Andr\'{a}s Kert\'{e}sz, Edith Moravcsik, and Csilla R\'{a}kosi (eds.), \emph{Current approaches to syntax -- a comparative handbook}. De Gruyter Mouton.\\
-
-  2017\oa{green}{http://users.ox.ac.uk/~sjoh2787/house_of_lords.pdf} 	& Jamie Y. Findlay. Unnatural acts lead to unconsummated marriages: discourses of homosexuality within the {House of Lords} debate on same-sex marriage. \emph{Journal of Language and Sexuality} 6(1), 30--60.\\
-
-  2016\oa{gold}{http://jlm.ipipan.waw.pl/index.php/JLM/article/view/171/148} & Jamie Y. Findlay. Mapping theory without argument structure. \emph{Journal of Language Modelling} 4(2), 293--338.
-  % \url{http://dx.doi.org/10.15398/jlm.v4i2.171}.
-   \\
-
-  2013\oa{green}{http://users.ox.ac.uk/~sjoh2787/medical_terminology.pdf} & Janak Bechar, Jamie Y. Findlay, and Joseph Hardwicke. Understanding medical words of Greek and Latin origin. \emph{Student BMJ} 21.
-\end{cvsection}
-
-\subsection*{Articles in Refereed Conference Proceedings}
-
-\begin{cvsection}
-  2017\oa{gold}{http://web.stanford.edu/group/cslipublications/cslipublications/LFG/LFG-2017/lfg2017-findlay.pdf} & Jamie Y. Findlay. Multiword expressions and lexicalism. In Miriam Butt and Tracy Holloway King (eds.), \emph{Proceedings of the LFG'17 Conference}, 209--229. Stanford, CA: CSLI Publications.\\
-
-  2017\oa{gold}{http://aclweb.org/anthology/W17-1709} & Jamie Y. Findlay. Multiword expressions and lexicalism: the view from LFG. In \emph{Proceedings of the 13th Workshop on Multiword Expressions (MWE 2017)}, 73--79. Association for Computational Linguistics.\\
-
-  2016\oa{gold}{http://web.stanford.edu/group/cslipublications/cslipublications/HPSG/2016/headlex2016-findlay.pdf} & Jamie Y. Findlay. The prepositional passive in Lexical Functional Grammar. In Doug Arnold, Miriam Butt, Berthold Crysmann, Tracy Holloway King, and Stefan M\"uller (eds.), \emph{Proceedings of the Joint 2016 Conference on Head-driven Phrase Structure Grammar and Lexical Functional Grammar}, 255--275. Stanford, CA: CSLI Publications.
-\end{cvsection}
-
-\subsection*{Refereed Presentations}
-
-\begin{cvsection}
-  8 Mar., 2018\slides{findlay-dgfs-slides.pdf} & Conspiracy theories: the problem with lexical approaches to idioms. Presented at the Workshop on One-to-Many Relations in Morphology, Syntax and Semantics at the 40th Annual Meeting of the Deutsche Gesellschaft f\"{u}r Sprachwissenschaft (DGfS 2018), Universit\"{a}t Stuttgart.\\
-
-  6 Sept., 2017\slides{kim-findlay-lagb.pdf} & The logic of Korean honorification. Joint work with Yoolim Kim. Presented at the 2017 Annual Meeting of the Linguistics Association of Great Britain (LAGB 2017), University of Kent, Canterbury.\\
-
-  27 July, 2017\handout{lfg17_handout.pdf} & Multiword expressions and lexicalism. Presented at the 22nd International Lexical Functional Grammar Conference, University of Konstanz.\\
-
-  15 June, 2017\slides{kim_findlay-LangUE2017-handout.pdf} & When the subject honorific brings honour to all: the expanding role of pragmatics in Korean honorification. Joint work with Yoolim Kim. Presented at the 12th Language at the University of Essex Postgraduate Conference (LangUE 2017), Colchester.\\
-
-  4 Apr., 2017\poster{eacl_poster.pdf} & Multiword expressions and lexicalism: the view from LFG. Poster presented at the 13th Workshop on Multiword Expressions (MWE 2017), Valencia.\\
-
-  29 July, 2016\handout{HeadLex_Presentation.pdf} & The prepositional passive in Lexical Functional Grammar. Presented at HeadLex16, Polish Academy of Sciences, Warsaw.\\
-
-  5 June, 2014\handout{IGALA8Presentation.pdf} & Unnatural acts lead to unconsummated marriages: discourses of homosexuality in the House of Lords revisited. Presented at the 8th International Gender and Language Association Conference, Simon Fraser University, Vancouver.\\
- \end{cvsection}
-
-\subsection*{Invited Talks}
-
-\begin{cvsection}
-  31 Jan., 2017\handout{SOAS_Presentation_p-passive.pdf} & The pseudopassive: not so phoney after all. Presented at the Linguistics Departmental Seminar Series, School of Oriental and African Studies (SOAS), London.\\
-\end{cvsection}
+%%==========================================================================%%
 \newpage
-\subsection*{Other Presentations}
 
+\section*{Research Experience}
+
+\note\ My publications and talks are given on pp.~\pageref{scholarship}ff. This section gives details of some recent projects, with (clickable) cross-references to related publications and talks.\\
+
+\REx{Multiword expressions and the lexicon}{syntax, semantics}
 \begin{cvsection}
-
-  13 May, 2017\slides{kim_findlay-SELFG23-handout_slides.pdf} & When the subject honorific brings honour to all: the expanding role of pragmatics in Korean honorification. Joint work with Yoolim Kim. Presented at the 23rd South of England LFG Meeting, SOAS, London.\\
-
-  4 Feb., 2017\handout{SE-LFG_Feb2017-1up.pdf} & Multiword expressions and lexicalism. Presented at the 22nd South of England LFG Meeting, SOAS, London.\\
-
-  20 Feb., 2016\handout{SELFG_Presentation_idioms.pdf}	& Idioms in LFG. Presented at the 19th South of England LFG Meeting, SOAS, London.\\
-
-  1 Nov., 2014\handout{SELFG_Presentation_mapping-theory.pdf}	& Mapping theory without argument structure. Presented at the 15th South of England LFG Meeting, SOAS, London.\\
-
-  22 Oct., 2013\handout{MPhil_thesis_workshop_presentation.pdf}	& The pseudopassive: a Lexical Functional account. Presented at the MPhil/PRS Thesis Workshop, University of Oxford.\\
-
-  8 May, 2013\handout{P-passive_SWG.pdf}	& The pseudopassive in LFG: some preliminary thoughts. Presented at the Syntax Working Group, University of Oxford.
+  \subhead{Overview} &%
+  My D.Phil. thesis gives an analysis of multiword expressions (MWEs), especially idioms. It argues against approaches which conceive of idioms like \emph{spill the beans} as being made up special versions of \emph{spill} and \emph{beans}, and in favour of approaches which reaffirm the mixed nature of MWEs as partially word-like and partially phrase-like. It then develops a concrete example of the latter kind of theory, integrating insights from Tree Adjoining Grammar into the Lexical Functional Grammar architecture.%
+\\
+  \subhead{Outcomes} &%
+  I have presented this work at peer-reviewed conferences for computational linguists (\sref{eacl2017-talk}), theoretical syntacticians (\sref{lfg2017-talk}), and for more general linguistics audiences (\sref{dgfs2018-talk}). The work has also appeared in the proceedings of two of these conferences (\sref{lfg2017}, \sref{eacl2017}).%
+  % The project has also involved collaboration with researchers at the Goethe Universit\"{a}t, Frankfurt am Main, where I spent a month in June 2018.
+\\
+  \subhead{Future work} &%
+  My future plans involve conducting a number of psycholinguistic experiments to test the validity of certain theoretical claims, expanding the analysis to cover periphrasis and light verb constructions, and ultimately synthesising these findings with my thesis work into a monograph.
 \end{cvsection}
+
+\REx{Honorification in Korean}{pragmatics}
+\begin{cvsection}
+  \subhead{Overview} &%
+  Yoolim Kim and I have been developing a formal account of honorification in Korean. Little attention has been paid to how the \emph{target} of honorification (the honoured one) is identified, and we give a novel analysis of this problem.%
+\\
+  \subhead{Outcomes} &%
+  We have presented this work at the annual meeting of the LAGB (\sref{lagb2017-talk}) and at LangUE, a postgraduate student conference at the University of Essex (\sref{langue2017-talk}), as well as at a number of informal venues.%
+\\
+  \subhead{Future work} &%
+  We intend to submit an article to the \textit{Journal of Pragmatics} in the near future.
+\end{cvsection}
+
+\REx{Discourses of homosexuality}{sociolinguistics, corpus linguistics}
+\begin{cvsection}
+  \subhead{Overview} &%
+  I conducted a short research project using corpus linguistic and critical discourse analysis tools to examine the UK House of Lords debates on same-sex marriage in 2013. This contributed to a growing literature on both debates around same-sex marriage legislation and also on implicit homophobia.%
+\\
+  \subhead{Outcomes} &%
+  My findings were reported at the IGALA conference in 2014 (\sref{igala2014-talk}) and published in the \textit{Journal of Language and Sexuality} (\sref{house-of-lords-paper}).%
+\\
+  \subhead{Future work} &%
+  I intend to continue this research by examining parliamentary debates from other countries where discursive norms differ in interesting ways, such as the focus on family values and religion in Uganda or the USA.
+\end{cvsection}
+
+% \subsection*{The prepositional passive}
+% \begin{cvsection}
+%   \subhead{Overview} &%
+%   My M.Phil. thesis provides an analysis in Lexical Functional Grammar for the prepositional passive (e.g., \textit{The problem was dealt with}, \textit{Kim has been spoken to}, etc.). It makes use of a novel theory of the mapping between arguments and grammatical functions which I have developed, and which I present in detail in an article for the \textit{Journal of Language Modelling} (\sref{arg-str-paper}).%
+% \\
+%   \subhead{Outcomes} &%
+%   The results were presented at the joint conference on HPSG and LFG (HeadLex) in 2016 (\sref{headlex-talk}) and appeared in the proceedings (\sref{headlex}).
+% \end{cvsection}
+
+%%==========================================================================%%
+\newpage
 
 \section*{Teaching}
 
+I have taught \textbf{syntax}, \textbf{semantics \& pragmatics}, and \textbf{sociolinguistics} at all levels, including designing tutorial courses for the latter two. My teaching experience covers small group and tutorial settings, larger classes, and lectures. I have also taught phonology at the graduate level and an `intro to linguistics'-type general linguistics course. I hold a SEDA-PDF Supporting Learning award (see above).
+
 \subsection*{University of Oxford}
-\textit{Note:} At Oxford, `Prelims' = first year undergraduate level; `FHS (Final Honour School)' = advanced undergraduate level.
+\note\ At Oxford, `Prelims' = first year undergraduate level; `FHS (Final Honour School)' = advanced undergraduate level.
 
-\subsubsection*{Lectures}
+\subsubsection*{Syntax}
 \begin{cvsection}
-2018    & Prelims Semantics \& Pragmatics.\\
-2016--  & Occasional lectures in syntax (undergraduate and graduate level) and `formal foundations of linguistics' (graduate level), filling in for lecturer absences.
+  Since 2016  & Occasional lectures in undergraduate and graduate syntax.\\
+  Since 2014  & FHS syntax tutorials (group size: 1--3).\\
+  2015--2016  & Graduate `Introduction to syntax' practical classes (group size: \textasciitilde{}25).\\
+  2014			  &	Prelims `Grammatical analysis' classes (group size: 6).
 \end{cvsection}
 
-\subsubsection*{Graduate classes}
+\subsubsection*{Semantics \& pragmatics}
 \begin{cvsection}
-2017        & Formal foundations of linguistics practicals -- group size: 23.\\
-2015--2016	&	Introduction to syntax practicals -- group size: \textasciitilde{}25.\\
-2014			  & Introduction to phonology practicals -- group size: 12.
+  Since 2014  & FHS semantics \& pragmatics tutorials (group size: 1--3).\\
+  2018        & Prelims semantics \& pragmatics lectures.\\
+  2017        & \Note{%
+                Graduate `Formal foundations of linguistics' practical classes (group size: 23).}
+                {An introduction to set theory and logic for linguists.}
 \end{cvsection}
 
-\subsubsection*{Undergraduate classes}
+\subsubsection*{Sociolinguistics}
 \begin{cvsection}
-2014			  &	Prelims Grammatical Analysis -- group size: 6.
+  Since 2017	&	FHS Sociolinguistics tutorials (group size: 1--3).\\
+  2018        & Graduate classes in corpus methods in sociolinguistics (group size: 2).
 \end{cvsection}
-\newpage
-\subsubsection*{Tutorials}
 
+\subsubsection*{Phonology}
 \begin{cvsection}
-2017--			&	FHS Sociolinguistics.\\
-2014--			&	FHS Syntax.\\
-2014--			&	FHS Semantics \& Pragmatics.\\
-2014				&	Prelims General Linguistics, Psycholinguistics, Historical Linguistics, Semantics \& Pragmatics, and Sociolinguistics.\\
+  2014			  & Graduate `Introduction to phonology' practical classes (group
+                size: 12).
+\end{cvsection}
+
+\subsubsection*{General linguistics}
+\begin{cvsection}
+  2014				&	\Note{%
+                Prelims `General linguistics' tutorials (group size: 2).}
+                {Includes topics in general linguistics, psycholinguistics, historical
+                linguistics, semantics \& pragmatics, and sociolinguistics.}
 \end{cvsection}
 
 \subsubsection*{Miscellaneous}
-
 \begin{cvsection}
-%\parbox[t]{\datewidth\textwidth}{15 \& 22 Feb.,\\\hspace*{0.5em} 2017}		& Two \LaTeX{} workshops for linguistics graduate students.\\
-	15 Feb., 2017\handout{latex-basics.pdf}		& \parbox[t]{\bodywidth\textwidth}{Workshop: `\LaTeX{} basics'.}\\
+	2017--2018	& Workshop: `\LaTeX* basics'.\\
   %
-	22 Feb., 2017\handout{latex-advanced-topics.pdf}		& \parbox[t]{\bodywidth\textwidth}{Workshop: `Advanced topics in \LaTeX'.\\
-  {\footnotesize(Two workshops to introduce graduate students in linguistics to \LaTeX.)}}\\
+	2017--2018	& \Note{%
+                Workshop: `Advanced topics in \LaTeX*'.}
+                {Two workshops to introduce graduate students in linguistics to \LaTeX*.\\
+                Handouts available \href{http://users.ox.ac.uk/~sjoh2787/latex-basics.pdf}{\uline{here}} and \href{http://users.ox.ac.uk/~sjoh2787/latex-advanced-topics.pdf}{\uline{here}}.}\\
   %
-	25 Jan., 2017\handout{Socio_presentation.pdf}		& \parbox[t]{\bodywidth\textwidth}{`Language and identity: the view from linguistics'.\\{\footnotesize(An introduction to sociolinguistics for first year English language and literature undergraduates.)}}
-
+	25 Jan., 2017	& \Note{%
+                  `Language and identity: the view from linguistics'.}
+                  {An introduction to sociolinguistics for first year English language and literature undergraduates.\\
+                  Handout available \href{http://users.ox.ac.uk/~sjoh2787/Socio_presentation.pdf}{\uline{here}}.}
 \end{cvsection}
 
-\section*{Honours and Awards}
+%%==========================================================================%%
+
+\section*{Grants and Awards}
 
 \begin{cvsection}
-  Mar. 2018 & Santander Academic Travel Award (£1,000).\\
+  Mar. 2018   & \Note{Santander Academic Travel Award.}{Value: £1,000.}\\
 
-  2015--2017 	& Professor Paul Slack Scholarship,
-  Linacre College, University of Oxford.\\
+  2015--2017 	& \Note{%
+                Professor Paul Slack Scholarship, Linacre College, University of Oxford.}
+                {All fees covered; total value: \textasciitilde{}£14,000.}\\
   %
-  2015--2017 	& AHRC Studentship, Faculty of
-  Linguistics, Philology \& Phonetics, University of Oxford.\\
+  2015--2017 	& \Note{%
+                AHRC Studentship, Faculty of Linguistics, Philology \& Phonetics, University of Oxford.}
+                {Total value: £28,353.}\\
   %
-  July 2014	& George Wolf Prize for best overall
-  performance in the M.Phil. or M.St. degree, Faculty of Linguistics,
-  Philology \& Phonetics, University of Oxford.\\
+  July 2014	  & George Wolf Prize for best overall performance in the M.Phil.
+                or M.St. degree, Faculty of Linguistics, Philology \& Phonetics, University of Oxford.\\
   %
-  June 2014	& Graduate student essay prize,
-  International Gender and Language Association.\\
+  June 2014	  & Graduate student essay prize, International Gender and Language
+                Association.\\
   %
-  2012--2014	& AHRC Studentship, Faculty of
-  Linguistics, Philology \& Phonetics, University of Oxford.\\
+  2012--2014	& \Note{%
+                AHRC Studentship, Faculty of Linguistics, Philology \& Phonetics, University of Oxford.}
+                {All fees and living expenses covered; total value: \textasciitilde{}£38,000.}\\
   %
-  2011		& McCall McBain Fellowship, McGill University.\\
+  2011		    & \Note{%
+                McCall McBain Fellowship, McGill University.}
+                {Total value: \textasciitilde{}CAN\$62,000 for 2 years; partially declined.}\\
   %
-  2008--2011	& Casberd Scholarship, St.\ John's
-  College, University of Oxford.\\
+  2008--2011	& \Note{%
+                Casberd Scholarship, St.\ John's College, University of Oxford.}
+                {Total value: \textasciitilde{}£900.}
 \end{cvsection}
+
+%%==========================================================================%%
 
 \section*{Service}
 
 \subsection*{To the department}
 
 \begin{cvsection}
-  2017--      & Co-founder and co-convenor, D.Phil. workshop, Faculty of Linguistics, Philology \& Phonetics, University of Oxford.\\
-  2015--      & Admissions interviewing for undergraduate degrees involving linguistics.\\
+  Since 2017  & Co-founder and co-convenor, D.Phil. workshop, Faculty of Linguistics, Philology \& Phonetics, University of Oxford.\\
+  Since 2015   & Admissions interviewing for undergraduate degrees involving linguistics.\\
   2017 		    & Convenor (Hilary Term), Syntax Working Group, University of Oxford.\\
   2009--2010	& President, Oxford University Linguistics Society.\\
   2007--2009	& Student representative, Faculty of Linguistics, Philology \& Phonetics, University of Oxford.\\
@@ -352,28 +500,96 @@ Syntax, semantics, grammatical theory and the syntax-semantics interface (especi
 % Volunteer copy editor for \textit{Journal of Language Modelling}.
 
 \begin{cvsection}
-Reviewer (journals)	&	\textit{Journal of Linguistics}~(2015, 2017), \textit{Corpora and Discourse Studies}~(2018).\\
-Reviewer (conferences) & \textit{Conference of the Student Organisation of Linguistics in Europe (ConSOLE)}~(2017).\\
-Marker    & UK Linguistics Olympiad~(2014--).\\
-Copy editor& \textit{Journal of Language Modelling}.
+\Label{Manuscript reviewer} &	\textit{Journal of Linguistics}~(2015, 2017),
+                      \textit{Corpora and Discourse Studies}~(2018).\\
+\Label{Abstract reviewer}   & \textit{Conference of the Student Organisation of
+                      Linguistics in Europe (ConSOLE)}~(2017).\\
+\Label{Marker}              & UK Linguistics Olympiad~(since 2014).\\
+\Label{Copy editor}         & \textit{Journal of Language Modelling}.
 \end{cvsection}
 
-\section*{Memberships}
-
-\begin{cvsection}
-  2017--	& Association for Computational Linguistics (ACL).\\
-  2014--  & International Lexical Functional Grammar Assoc. (ILFGA).\\
-  2012-- 	& Canadian Linguistic Association (CLA\slash ACL).\\
-  2011-- 	& Linguistics Association of Great Britain (LAGB).\\
-  2011-- 	& International Gender and Language Association (IGALA).\\
-\end{cvsection}
-
+%%==========================================================================%%
+\newpage
 \section*{Languages}
 
 \begin{cvsection}
-  \textbf{Natural}      & English~(native), French~(advanced), Latin~(intermediate), \phantom{j} German~(basic). \\
-  \textbf{Programming}  & Bash (Unix shell), Python. \\
-  \textbf{Markup}       & \LaTeX\slash Bib\TeX, HTML\slash CSS.
+  \Label{Natural}      & English~(native), French~(near-fluent),
+                          Latin~(intermediate), German~(basic). \\
+  \Label{Programming}  & Bash (Unix shell), Python. \\
+  \Label{Markup}       & \LaTeX*\slash Bib\TeX*, HTML\slash CSS.
 \end{cvsection}
+
+%%==========================================================================%%
+
+\section*{Professional Memberships}
+
+\begin{cvsection}
+  Since 2017	& Association for Computational Linguistics (ACL).\\
+  Since 2014  & International Lexical Functional Grammar Association (ILFGA).\\
+  Since 2012 	& Canadian Linguistic Association (CLA\slash ACL).\\
+  Since 2011 	& Linguistics Association of Great Britain (LAGB).\\
+  Since 2011 	& International Gender and Language Association (IGALA).\\
+\end{cvsection}
+
+%%==========================================================================%%
+
+\newpage
+
+\section*{Scholarship}  \label{scholarship}
+
+\note\ To the right of each item below, I provide a link to an accessible version. When that is a published version, I give an indication of its Open Access status by making the text \textcolor{gold}{gold} or \textcolor{green}{green}.
+
+\subsection*{Articles in Refereed Journals and Books}
+
+\Ref*{lfg-chapter}{In preparation}{Mary Dalrymple and Jamie Y. Findlay. Lexical Functional Grammar. In Andr\'{a}s Kert\'{e}sz, Edith Moravcsik, and Csilla R\'{a}kosi (eds.), \emph{Current approaches to syntax -- a comparative handbook}. De Gruyter Mouton.}
+
+\Ref{house-of-lords-paper}{2017\oa{green}{http://users.ox.ac.uk/~sjoh2787/house_of_lords.pdf}}{Jamie Y. Findlay. Unnatural acts lead to unconsummated marriages: discourses of homosexuality within the {House of Lords} debate on same-sex marriage. \emph{Journal of Language and Sexuality} 6(1), 30--60.}
+
+\Ref{arg-str-paper}{2016\oa{gold}{http://jlm.ipipan.waw.pl/index.php/JLM/article/view/171/148}}{Jamie Y. Findlay. Mapping theory without argument structure. \emph{Journal of Language Modelling} 4(2), 293--338.}
+  % \url{http://dx.doi.org/10.15398/jlm.v4i2.171}.
+
+\Ref{bmj-paper}{2013\oa{green}{http://users.ox.ac.uk/~sjoh2787/medical_terminology.pdf}}{Janak Bechar, Jamie Y. Findlay, and Joseph Hardwicke. Understanding medical words of Greek and Latin origin. \emph{Student BMJ} 21.}
+
+\subsection*{Articles in Refereed Conference Proceedings}
+
+\Ref{lfg2017}{2017\oa{gold}{http://web.stanford.edu/group/cslipublications/cslipublications/LFG/LFG-2017/lfg2017-findlay.pdf}}{Jamie Y. Findlay. Multiword expressions and lexicalism. In Miriam Butt and Tracy Holloway King (eds.), \emph{Proceedings of the LFG'17 Conference}, 209--229. Stanford, CA: CSLI Publications.}
+
+\Ref{eacl2017}{2017\oa{gold}{http://aclweb.org/anthology/W17-1709}}{Jamie Y. Findlay. Multiword expressions and lexicalism: the view from LFG. In \emph{Proceedings of the 13th Workshop on Multiword Expressions (MWE 2017)}, 73--79. Association for Computational Linguistics.}
+
+\Ref{headlex}{2016\oa{gold}{http://web.stanford.edu/group/cslipublications/cslipublications/HPSG/2016/headlex2016-findlay.pdf}}{Jamie Y. Findlay. The prepositional passive in Lexical Functional Grammar. In Doug Arnold, Miriam Butt, Berthold Crysmann, Tracy Holloway King, and Stefan M\"uller (eds.), \emph{Proceedings of the Joint 2016 Conference on Head-driven Phrase Structure Grammar and Lexical Functional Grammar}, 255--275. Stanford, CA: CSLI Publications.}
+
+\subsection*{Refereed Presentations}
+
+\Ref*{dgfs2018-talk}{8 Mar., 2018\slides{findlay-dgfs-slides.pdf}}{Conspiracy theories: the problem with lexical approaches to idioms. Presented at the Workshop on One-to-Many Relations in Morphology, Syntax and Semantics at the 40th Annual Meeting of the Deutsche Gesellschaft f\"{u}r Sprachwissenschaft (DGfS 2018), Universit\"{a}t Stuttgart.}
+
+\Ref*{lagb2017-talk}{6 Sept., 2017\slides{kim-findlay-lagb.pdf}}{The logic of Korean honorification. Joint work with Yoolim Kim. Presented at the 2017 Annual Meeting of the Linguistics Association of Great Britain (LAGB 2017), University of Kent, Canterbury.}
+
+\Ref*{lfg2017-talk}{27 July, 2017\handout{lfg17_handout.pdf}}{Multiword expressions and lexicalism. Presented at the 22nd International Lexical Functional Grammar Conference, University of Konstanz.}
+
+\Ref*{langue2017-talk}{15 June, 2017\slides{kim_findlay-LangUE2017-handout.pdf}}{When the subject honorific brings honour to all: the expanding role of pragmatics in Korean honorification. Joint work with Yoolim Kim. Presented at the 12th Language at the University of Essex Postgraduate Conference (LangUE 2017), Colchester.}
+\newpage
+\Ref*{eacl2017-talk}{4 Apr., 2017\poster{eacl_poster.pdf}}{Multiword expressions and lexicalism: the view from LFG. Poster presented at the 13th Workshop on Multiword Expressions (MWE 2017), Valencia.}
+
+\Ref*{headlex-talk}{29 July, 2016\handout{HeadLex_Presentation.pdf}}{The prepositional passive in Lexical Functional Grammar. Presented at HeadLex16, Polish Academy of Sciences, Warsaw.}
+
+\Ref*{igala2014-talk}{5 June, 2014\handout{IGALA8Presentation.pdf}}{Unnatural acts lead to unconsummated marriages: discourses of homosexuality in the House of Lords revisited. Presented at the 8th International Gender and Language Association Conference, Simon Fraser University, Vancouver.}
+
+\subsection*{Invited Talks}
+
+\Ref*{soas-seminar-2017}{31 Jan., 2017\handout{SOAS_Presentation_p-passive.pdf}}{The pseudopassive: not so phoney after all. Presented at the Linguistics Departmental Seminar Series, School of Oriental and African Studies (SOAS), London.}
+
+\subsection*{Other Presentations}
+
+\Ref*{selfg23}{13 May, 2017\slides{kim_findlay-SELFG23-handout_slides.pdf}}{When the subject honorific brings honour to all: the expanding role of pragmatics in Korean honorification. Joint work with Yoolim Kim. Presented at the 23rd South of England LFG Meeting, SOAS, London.}
+
+\Ref*{selfg22}{4 Feb., 2017\handout{SE-LFG_Feb2017-1up.pdf}}{Multiword expressions and lexicalism. Presented at the 22nd South of England LFG Meeting, SOAS, London.}
+
+\Ref*{selfg19}{20 Feb., 2016\handout{SELFG_Presentation_idioms.pdf}}{Idioms in LFG. Presented at the 19th South of England LFG Meeting, SOAS, London.}
+
+\Ref*{selfg15}{1 Nov., 2014\handout{SELFG_Presentation_mapping-theory.pdf}}{Mapping theory without argument structure. Presented at the 15th South of England LFG Meeting, SOAS, London.}
+
+\Ref*{mphil-prs}{22 Oct., 2013\handout{MPhil_thesis_workshop_presentation.pdf}}{The pseudopassive: a Lexical Functional account. Presented at the MPhil/PRS Thesis Workshop, University of Oxford.}
+
+\Ref*{swg-tt2013}{8 May, 2013\handout{P-passive_SWG.pdf}}{The pseudopassive in LFG: some preliminary thoughts. Presented at the Syntax Working Group, University of Oxford.}
 
 \end{document}
