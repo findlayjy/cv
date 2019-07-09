@@ -14,7 +14,7 @@
 %            %
 %============%
 
-\documentclass[11pt,a4paper,twoside]{article}
+\documentclass[11pt,a4paper]{article}
 
 %===============================%
 %  Packages and basic settings  %
@@ -38,7 +38,7 @@
 \linespread{1.05}
 
 % Margins and columns
-\usepackage[margin=1.2in,twoside,centering,marginparsep=0.8cm]{geometry}
+\usepackage[margin=1.2in,centering,marginparsep=0.8cm]{geometry}
 
 % No indent for new paragraphs
 \setlength{\parindent}{0pt}
@@ -172,7 +172,9 @@
 \newcommand\Ref[3]{%
   \refstepcounter{RefNo}%
   \hangindent=\indentlength%
-  \reversemarginpar\marginnote{[\theRefNo]}\normalmarginpar%
+  \reversemarginpar
+  \marginnote{[\theRefNo]}
+  \normalmarginpar%
   \label{#1}%
   \textbf{#2}%
   \hspace*{1em}%
@@ -184,7 +186,9 @@
 \WithSuffix\newcommand\Ref*[3]{%
   \refstepcounter{RefNo}%
   \hangindent=\indentlength%
-  \reversemarginpar\marginnote{[\theRefNo]}\normalmarginpar%
+  \reversemarginpar
+  \marginnote{[\theRefNo]}
+  \normalmarginpar%
   \label{#1}%
   \textbf{#2}%
   \hspace*{0.5em}%
@@ -207,6 +211,10 @@
 
 % A note macro
 \newcommand{\note}{\emph{Note: }}
+
+% Long dates
+\newcommand{\longdate}[1]{\parbox[t]{\datewidth\textwidth}{\raggedleft
+#1}}
 
 % Changing font for \LaTeX command because it looks gross in Fira Sans
 \WithSuffix\newcommand\LaTeX*{%
@@ -296,9 +304,9 @@ Walton St., Oxford, OX1 2HG\\
   2015--2019 & \Note{%
     \textbf{D.Phil.} in Comparative Philology \& General Linguistics.\\
     University of Oxford.}%
-    {Thesis title: \emph{Multiword expressions and the lexicon}.\\
-    Supervisors: Ash Asudeh, Mary Dalrymple.\\
-    Examiners: Tom Wasow, Stephen Pulman
+    {Thesis title: \emph{Multiword expressions and the lexicon}. \href{http://users.ox.ac.uk/~sjoh2787/findlay-thesis.pdf}{\texttt{[pdf]}}\\
+    Supervisors: Ash Asudeh, Mary Dalrymple.%\\
+    % Examiners: Tom Wasow, Stephen Pulman
     % (described in their report as ``an excellent thesis'')
     }
     \\
@@ -326,7 +334,7 @@ Walton St., Oxford, OX1 2HG\\
   2017 & \Note{%
     SEDA-PDF Supporting Learning award.%
     }%
-    {Mapped to Descriptor 1 of the UK Professional Standards Framework: equivalent to Associate Fellow of\\[-0.5em] the Higher Education Academy.\\
+    {Mapped to Descriptor 1 of the UK Professional Standards Framework: equivalent to Associate Fellow\\[-0.5em] of the Higher Education Academy.\\
     My portfolio submission is available online \href{http://users.ox.ac.uk/~sjoh2787/portfolio-JYF-submission.pdf}{\uline{here}}.
     }%
 \end{cvsection}
@@ -338,8 +346,7 @@ Walton St., Oxford, OX1 2HG\\
 \begin{cvsection}
   Since July 2012	& Freelance linguistic consultant on various NLP tasks.\\
   % Nov.--Dec. 2016	& Volunteer annotator, PARSEME shared task on automatic identification of verbal multiword expressions.\\
-  \parbox[t]{\datewidth\textwidth}{\raggedleft
-  Dec. 2014--\\Oct. 2015}
+  \longdate{Dec. 2014--\\[-0.5em] Oct. 2015}
   & Research Assistant, Oxford English Dictionary, Oxford University Press.\\
   % Feb.--Sept. 2014	&  Annotator, Supportive Automated Feedback for Short Essay Answers (SAFeSEA) project, Department of Computer Science, University of Oxford.\\
   % May--Sept. 2013	& Casual Research Assistant to Mary Dalrymple, Faculty of Linguistics, Philology \& Phonetics, University of Oxford.\\
@@ -355,14 +362,14 @@ Walton St., Oxford, OX1 2HG\\
 \REx{Multiword expressions and the lexicon}{syntax, semantics}
 \begin{cvsection}
   \subhead{Overview} &%
-  My D.Phil. thesis gives an analysis of multiword expressions (MWEs), especially idioms. It argues against approaches which conceive of idioms like \emph{spill the beans} as being made up special versions of \emph{spill} and \emph{beans}, and in favour of approaches which reaffirm the mixed nature of MWEs as partially word-like and partially phrase-like. It then develops a concrete example of the latter kind of theory, integrating insights from Tree-Adjoining Grammar into the Lexical Functional Grammar architecture.%
+  My D.Phil. thesis (\sref{thesis}) gives an analysis of multiword expressions (MWEs), especially idioms. It argues against approaches which conceive of idioms like \emph{spill the beans} as being made up special versions of \emph{spill} and \emph{beans}, and in favour of approaches which reaffirm the mixed nature of MWEs as partially word-like and partially phrase-like. It then develops a concrete example of the latter kind of theory, integrating insights from Tree-Adjoining Grammar into the Lexical Functional Grammar architecture.%
 \\
   \subhead{Outcomes} &%
   I have presented this work at peer-reviewed conferences for computational linguists (\sref{eacl2017-talk}), theoretical syntacticians (\sref{lfg2017-talk}), and for more general linguistics audiences (\sref{dgfs2018-talk}). The work has also appeared in the proceedings of two of these conferences (\sref{lfg2017}, \sref{eacl2017}).
   I have also organised a collaboration with researchers at the Goethe-Universit\"{a}t Frankfurt am Main, where I conducted a research visit in June 2018.
 \\
   \subhead{Future work} &%
-  My future plans involve conducting a number of psycholinguistic experiments to test the validity of certain theoretical claims, as well as delving more deeply into the semantic properties of idioms. Sascha Bargmann, Manfred Sailer and I are developing a semantic theory of the `extended' use of idioms, exemplified in e.g. \textit{Once this cat is out of the bag, a lot of people are going to get scratched}, where the underlying metaphor is used to make sense of a figurative continuation (\sref{creative-power-metaphor-poster}, \sref{europhras2019-talk}, \sref{manchester-seminar}, \sref{fmm2018}). I ultimately plan to synthesise these findings with my thesis work into a book.
+  I have a number of psycholinguistic experiments planned to test the validity of certain theoretical claims, and also intend to delve more deeply into the semantic properties of idioms. Sascha Bargmann, Manfred Sailer and I are developing a semantic theory of the `extended' use of idioms, exemplified in e.g. \textit{Once this cat is out of the bag, a lot of people are going to get scratched}, where the underlying metaphor is used to make sense of a figurative continuation (\sref{creative-power-metaphor-poster}, \sref{europhras2019-talk}, \sref{manchester-seminar}, \sref{fmm2018}). I ultimately plan to synthesise these findings with my thesis work into a book.
 \end{cvsection}
 
 \REx{Honorification in Korean}{pragmatics}
@@ -386,7 +393,7 @@ Walton St., Oxford, OX1 2HG\\
   My findings were reported at the IGALA conference in 2014 (\sref{igala2014-talk}) and published in the \textit{Journal of Language and Sexuality} (\sref{house-of-lords-paper}).%
 \\
   \subhead{Future work} &%
-  I intend to continue this research by examining parliamentary debates from other countries where discursive norms differ in interesting ways, such as the focus on family values and religion in Uganda or the USA.
+  I would like to continue this research by examining parliamentary debates from other countries where discursive norms differ in interesting ways, such as the focus on family values and religion in Uganda or the USA.
 \end{cvsection}
 
 % \subsection*{The prepositional passive}
@@ -405,7 +412,7 @@ Walton St., Oxford, OX1 2HG\\
 
 I have taught \textbf{syntax}, \textbf{semantics \& pragmatics}, \textbf{sociolinguistics}, \textbf{psycholinguistics}, and \textbf{general linguistics} at both the introductory and advanced undergraduate level. At the graduate level, I have TA-ed classes in \textbf{syntax}, \textbf{phonology}, and \textbf{formal foundations of linguistics} (an introduction to set theory, logic, and formal language theory for linguists). This teaching experience covers small group and tutorial settings, larger classes, and lectures, including designing tutorial courses and lecture series. I hold a SEDA-PDF Supporting Learning award (see above).
 \\[1em]
-In this section, years shown stand for the academic year which starts in that calendar year (e.g. 2017 = the 2017/18 academic year).
+\note\ In this section, years shown stand for the academic year which starts in that calendar year (e.g. 2017 = the 2017/18 academic year).
 
 \subsection*{University of Oxford}
 \note\ At Oxford, `Prelims' = first year undergraduate level; `FHS (Final Honour School)' = advanced undergraduate level.
@@ -428,6 +435,7 @@ In this section, years shown stand for the academic year which starts in that ca
   2018        & \Note{%
                 FHS `General linguistics' (group size: 2--3).}
                 {A survey module which covers the historical developments of linguistic theory since the 19th century\\[-0.5em] along with some big-picture questions about e.g. the nature of variation in language or the possibility\\[-0.5em] of an adequate semantic theory.}\\
+  2017--2018  &	FHS sociolinguistics (group size: 1--3).\\
   2014, 2018  &	\Note{%
                 Prelims `General linguistics' (group size: 2).}
                 {An introductory course which covers topics in general linguistics proper, along with psycholinguistics,\\[-0.5em] semantics \& pragmatics, sociolinguistics, and historical
@@ -435,7 +443,6 @@ In this section, years shown stand for the academic year which starts in that ca
   2014, 2018  &	\Note{%
                 Prelims `Grammatical analysis' (group size: 3--6).}
                 {An introduction to both syntax and morphology.}\\
-  2017--2018  &	FHS sociolinguistics (group size: 1--3).\\
   2014--2017  & FHS semantics \& pragmatics (group size: 1--3).\\
   2014--2016  & FHS syntax (group size: 1--3).\\
 \end{cvsection}
@@ -451,7 +458,7 @@ In this section, years shown stand for the academic year which starts in that ca
     2014	    & Graduate `Introduction to phonology' (group size: 12).
 \end{cvsection}
 
-\subsubsection*{One-off classes}
+\subsubsection*{Irregular classes}
 \begin{cvsection}
     2016, 2018	& \Note{%
                   `Language and identity: the view from linguistics'.}
@@ -477,11 +484,17 @@ In this section, years shown stand for the academic year which starts in that ca
   %
   Mar. 2018   & \Note{Santander Academic Travel Award.}{Value: £1,000.}\\
   %
-  2015--2017 	& \Note{%
+  % \longdate{%
+  % Oct. 2015--\\[-0.5em] June 2017}
+  2015--2017
+  & \Note{%
                 Professor Paul Slack Scholarship, Linacre College, University of Oxford.}
                 {All fees covered; total value: \textasciitilde{}£14,000.}\\
   %
-  2015--2017 	& \Note{%
+  % \longdate{%
+  % Oct. 2015--\\[-0.5em] June 2017}
+  2015--2017
+  & \Note{%
                 AHRC Studentship, Faculty of Linguistics, Philology \& Phonetics, University of Oxford.}
                 {Total value: £28,353.}\\
   %
@@ -491,7 +504,10 @@ In this section, years shown stand for the academic year which starts in that ca
   June 2014	  & Graduate student essay prize, International Gender and Language
                 Association.\\
   %
-  2012--2014	& \Note{%
+  % \longdate{%
+  % Oct. 2012--\\[-0.5em] June 2014}
+  2012--2014
+  & \Note{%
                 AHRC Studentship, Faculty of Linguistics, Philology \& Phonetics, University of Oxford.}
                 {Total value: \textasciitilde{}£38,000.}\\
   %
@@ -499,7 +515,10 @@ In this section, years shown stand for the academic year which starts in that ca
                 McCall McBain Fellowship, McGill University.}
                 {Total value: \textasciitilde{}CAN\$62,000 for 2 years; partially declined.}\\
   %
-  2008--2011	& \Note{%
+  % \longdate{%
+  % Oct. 2008--\\[-0.5em] June 2011}
+  2008--2011
+  & \Note{%
                 Casberd Scholarship, St.\ John's College, University of Oxford.}
                 {Awarded for achieving a distinction in first year examinations. Total value: \textasciitilde{}£900.}
 \end{cvsection}
@@ -510,10 +529,10 @@ In this section, years shown stand for the academic year which starts in that ca
 
 \subsection*{To the department}
 \begin{cvsection}
-  2018        & \Note{%
+  2018--2019  & \Note{%
                 Personal tutor and `Linguistics Organising Tutor', St Hugh's College.}
                 {Providing pastoral support and coordinating teaching for undergraduate linguistics students.}\\
-  2018        & Member of Undergraduate Studies Committee, Faculty of
+  2018--2019  & Member of Undergraduate Studies Committee, Faculty of
                 Linguistics, Philology \& Phonetics, University of Oxford.\\
   2015--2018  & Admissions interviewing for undergraduate degrees involving
                 linguistics, University of Oxford.\\
@@ -529,12 +548,16 @@ In this section, years shown stand for the academic year which starts in that ca
 \subsection*{To the profession}
 \begin{cvsection}
 \Label{Manuscript\\[-0.5ex] reviewer} &
-                      \textit{Journal of Linguistics}~(2015, 2017),
-                      \textit{Corpora and Discourse Studies}~(2018),
-                      \textit{Proceedings of the LFG Conference}~(2018).\\
-\Label{Abstract\\[-0.5ex] reviewer}   & \textit{Conference of the Student Organisation of Linguistics in Europe (ConSOLE)}~(2017), \textit{International Lexical Functional Grammar Conference} (2019).\\
-\Label{Marker}              & UK Linguistics Olympiad~(since 2014).\\
-\Label{Copy editor}         & \textit{Journal of Language Modelling} (since 2017).
+                    \textit{Proceedings of the LFG Conference}~(2018),
+                    \textit{Corpora and Discourse Studies}~(2018),
+                    \textit{Journal of Linguistics}~(2015, 2017).
+                     \\
+\Label{Abstract\\[-0.5ex] reviewer}   &
+                    \textit{International Lexical Functional Grammar Conference} (2019).
+                    \textit{Conference of the Student Organisation of Linguistics in Europe (ConSOLE)}~(2017),
+                    \\
+\Label{Marker}      & UK Linguistics Olympiad~(since 2014).\\
+\Label{Copy editor} & \textit{Journal of Language Modelling} (since 2017).
 \end{cvsection}
 
 %%==========================================================================%%
@@ -566,24 +589,28 @@ In this section, years shown stand for the academic year which starts in that ca
 \newcounter{dummy}
 \refstepcounter{dummy}
 
+
 \section*{Scholarship} \label{scholarship}
 
 \note\ To the right of each item below, I provide, where possible, a link to an accessible version. When that is a published version, I indicate its Open Access status by making the text \textcolor{gold}{gold} or \textcolor{green}{green}.
 
-\subsection*{Work in progress}
+% \subsection*{Work in progress}
+%
+% \Ref*{lfg-tag-chapter}{In preparation}{Jamie Y. Findlay. LFG and Tree-Adjoining Grammar. In Mary Dalrymple (ed.), \emph{Handbook of Lexical Functional Grammar}. Language Science Press.}
+%
+% \Ref*{idiom-extensions-paper}{In preparation}{Jamie Y. Findlay, Sascha Bargmann and Manfred Sailer. The double life of idioms: lexical encoding, metaphor, and analogy in the analysis of VP idioms. [Working title.]}
+%
+% \Ref*{arg-str-handbook-chapter}{In preparation}{Jamie Y. Findlay and Anna Kibort. Argument structure and mapping theory. In Mary Dalrymple (ed.), \emph{Handbook of Lexical Functional Grammar}. Language Science Press.}
+%
+% \Ref*{honorification-paper}{In preparation}{Yoolim Kim and Jamie Y. Findlay. Identifying the target of honorification. [Working title.]}
 
-\Ref*{lfg-tag-chapter}{In preparation}{Jamie Y. Findlay. LFG and Tree-Adjoining Grammar. In Mary Dalrymple (ed.), \emph{Handbook of Lexical Functional Grammar}. Language Science Press.}
+\subsection*{Thesis}
 
-\Ref*{idiom-extensions-paper}{In preparation}{Jamie Y. Findlay, Sascha Bargmann and Manfred Sailer. The double life of idioms: lexical encoding, metaphor, and analogy in the analysis of VP idioms. [Working title.]}
-
-\Ref*{arg-str-handbook-chapter}{In preparation}{Jamie Y. Findlay and Anna Kibort. Argument structure and mapping theory. In Mary Dalrymple (ed.), \emph{Handbook of Lexical Functional Grammar}. Language Science Press.}
-
-\Ref*{honorification-paper}{In preparation}{Yoolim Kim and Jamie Y. Findlay. Identifying the target of honorification. [Working title.]}
-
+\Ref{thesis}{2019\marginlink{thesis}{findlay-thesis.pdf}}{Jamie Y. Findlay. \textit{Multiword expressions and the lexicon.} D.Phil. thesis, University of Oxford.}
 
 \subsection*{Articles in Refereed Journals and Books}
 
-\Ref*{lfg-chapter}{To appear}{Mary Dalrymple and Jamie Y. Findlay. Lexical Functional Grammar. In Andr\'{a}s Kert\'{e}sz, Edith Moravcsik, and Csilla R\'{a}kosi (eds.), \emph{Current approaches to syntax -- a comparative handbook}. De Gruyter Mouton.}
+\Ref{lfg-chapter}{2019\oa{green}{http://users.ox.ac.uk/~cpgl0015/DalrympleFindlay.pdf}}{Mary Dalrymple and Jamie Y. Findlay. Lexical Functional Grammar. In Andr\'{a}s Kert\'{e}sz, Edith Moravcsik, and Csilla R\'{a}kosi (eds.), \emph{Current approaches to syntax -- a comparative handbook}. De Gruyter Mouton.}
 
 \Ref{house-of-lords-paper}{2017\oa{green}{http://users.ox.ac.uk/~sjoh2787/house_of_lords.pdf}}{Jamie Y. Findlay. Unnatural acts lead to unconsummated marriages: discourses of homosexuality within the {House of Lords} debate on same-sex marriage. \emph{Journal of Language and Sexuality} 6(1), 30--60.}
 
@@ -604,9 +631,10 @@ In this section, years shown stand for the academic year which starts in that ca
 
 \Ref*{creative-power-metaphor-poster}{30 Mar., 2019\poster{FBS-poster.pdf}}{Extended idioms as metaphors. Joint work with Sascha Bargmann and Manfred Sailer. Poster presented at the Conference on the Creative Power of Metaphor, Worcester College, University of Oxford.}%
 %Idiomaticity, creativity, and metaphor
-\newpage
-\Ref*{europhras2019-talk}{24 Jan., 2019\slides{europhras19.pdf}}{Why the butterflies in your stomach can have big wings: combining formal and cognitive theories to explain productive extensions of idioms. Joint work with Sascha Bargmann and Manfred Sailer. Presented at the International Conference of the Europ\"{a}ische Gesellschaft f\"{u}r Phraseologie (EUROPHRAS 2019): Productive Patterns in Phraseology, Santiago de Compostela, Spain.}
+% \newpage
 
+\Ref*{europhras2019-talk}{24 Jan., 2019\slides{europhras19.pdf}}{Why the butterflies in your stomach can have big wings: combining formal and cognitive theories to explain productive extensions of idioms. Joint work with Sascha Bargmann and Manfred Sailer. Presented at the International Conference of the Europ\"{a}ische Gesellschaft f\"{u}r Phraseologie (EUROPHRAS 2019): Productive Patterns in Phraseology, Santiago de Compostela, Spain.}
+\newpage
 \Ref*{lfg2018-talk}{18 July, 2018\slides{findlay-senior-lfg2018-slides.pdf}}{Lexical and grammatical meaning: attributive adjectives in French. Joint work with Hannah Senior. Presented at the 23rd International Lexical Functional Grammar Conference, University of Vienna.}
 
 \Ref*{dgfs2018-talk}{8 Mar., 2018\slides{findlay-dgfs-slides.pdf}}{Conspiracy theories: the problem with lexical approaches to idioms. Presented at the Workshop on One-to-Many Relations in Morphology, Syntax and Semantics at the 40th Annual Meeting of the Deutsche Gesellschaft f\"{u}r Sprachwissenschaft (DGfS 2018), Universit\"{a}t Stuttgart.}
@@ -636,9 +664,9 @@ In this section, years shown stand for the academic year which starts in that ca
 \Ref*{fmm2018}{4 Aug., 2018\slides{fmm2018.pdf}}{Pulling a pretence rabbit out of the hat. Joint work with Sascha Bargmann and Manfred Sailer. Presented (by Manfred Sailer) at the Workshop on Form-Meaning Mismatches in Natural Language (FMM2018), Georg-August-Univers\"{a}t G\"{o}ttingen.}
 
 \Ref*{selfg25}{26 May, 2018\handout{se-lfg25.pdf}}{Lexicalised LFG. Presented at the 25th South of England LFG Meeting, SOAS, London.}
-\newpage
-\Ref*{selfg23}{13 May, 2017\slides{kim_findlay-SELFG23-handout_slides.pdf}}{When the subject honorific brings honour to all: the expanding role of pragmatics in Korean honorification. Joint work with Yoolim Kim. Presented at the 23rd South of England LFG Meeting, SOAS, London.}
 
+\Ref*{selfg23}{13 May, 2017\slides{kim_findlay-SELFG23-handout_slides.pdf}}{When the subject honorific brings honour to all: the expanding role of pragmatics in Korean honorification. Joint work with Yoolim Kim. Presented at the 23rd South of England LFG Meeting, SOAS, London.}
+\newpage
 \Ref*{selfg22}{4 Feb., 2017\handout{SE-LFG_Feb2017-1up.pdf}}{Multiword expressions and lexicalism. Presented at the 22nd South of England LFG Meeting, SOAS, London.}
 
 \Ref*{selfg19}{20 Feb., 2016\handout{SELFG_Presentation_idioms.pdf}}{Idioms in LFG. Presented at the 19th South of England LFG Meeting, SOAS, London.}
