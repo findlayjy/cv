@@ -37,11 +37,6 @@
 %
 \linespread{1.05}
 
-% Layout
-\usepackage{multicol}
-\usepackage{enumitem}
-\usepackage{layouts}
-
 % Margins and columns
 \usepackage[margin=1.2in,centering,marginparsep=0.8cm]{geometry}
 
@@ -67,9 +62,6 @@
 \setlength{\indentlength}{29pt}
 % \settowidth{\indentlength}{2017}%
 % \addtolength{\indentlength}{1em}%
-
-% For manipulating and combining lengths easily
-\usepackage{calc}
 
 % Set some colours
 \usepackage[svgnames]{xcolor}
@@ -134,7 +126,7 @@
 \addtolength{\LTpost}{0pt}% glue after longtable
 
 % Main body sections
-\newcolumntype{L}{>{\raggedleft\footnotesize}p{\datewidth\textwidth}}
+\newcolumntype{L}{>{\raggedleft}p{\datewidth\textwidth}}
 \newcolumntype{R}{p{\bodywidth\textwidth}}
 %
 \newenvironment{cvsection}{%
@@ -144,27 +136,8 @@
   \end{longtable}
 }
 
-% Lists for reviews etc.
-\newlength{\squish}
-\setlength{\squish}{-14.275pt}
-%% 14pt is the sum of the default values of \topsep (8pt), \partopsep (2pt), and \parsep (4pt). This isn't quite right: the list is too low. But if you use the values these lengths have in this document (9pt, 3pt, and 4.5pt), the list is too high up ... Hence the super-hacky technique.
-
-\newenvironment{reviewlist}
-{%
-\vspace*{\squish}%
-\begin{itemize}[noitemsep,label={},nosep,left=0pt .. \parindent]%
-}
-{%
-\end{itemize}
-}
-
-\newenvironment{languagelist}
-{\begin{reviewlist}}
-{\end{reviewlist}}
-
-
 % Hyperlinks
-\usepackage[breaklinks,hidelinks]{hyperref}
+\usepackage[breaklinks]{hyperref}
 % \usepackage[hyphenbreaks]{breakurl}
 
 % Enable margin notes everywhere
@@ -225,7 +198,6 @@
 
 % Commands for adding the margin links
 \newcommand{\marginlink}[2]{\marginnote{\hspace*{-1em}\href{http://users.ox.ac.uk/~sjoh2787/#2}{\texttt{[#1]}}}}
-\newcommand{\marginlinkout}[2]{\marginnote{\hspace*{-1em}\href{#2}{\texttt{[#1]}}}}
 %
 \newcommand{\handout}[1]{\marginlink{handout}{#1}}
 \newcommand{\poster}[1]{\marginlink{poster}{#1}}
@@ -281,15 +253,6 @@
 #1}%
 }
 
-% Course convenor annotation
-\newcommand{\conv}{
-% \reversemarginpar
-% \marginnote{%
-$\mathcal{C}$\hfill%
-% }
-% \normalmarginpar
-}
-
 %========%
 %        %
 %  BODY  %
@@ -321,7 +284,7 @@ Walton St., Oxford, OX1 2HG\\
 
 \begin{cvsection}
     &
-     Syntax, semantics, grammatical theory and the syntax-semantics interface (especially Lexical Functional Grammar and Glue Semantics), pragmatics, (critical) discourse analysis, language \& gender, language \& sexuality.
+     Syntax, semantics, grammatical theory and the syntax-semantics interface (especially Lexical Functional Grammar and Glue Semantics), philosophy of language, pragmatics, (critical) discourse analysis, language \& gender, language \& sexuality.
 \end{cvsection}
 
 %%==========================================================================%%
@@ -329,7 +292,6 @@ Walton St., Oxford, OX1 2HG\\
 \section*{Academic Employment}
 
 \begin{cvsection}
-  Since Dec. 2019 & Outreach \& Access Officer (for linguistics), University of Oxford.\\
   Since Oct. 2019 & Departmental Lecturer in Syntax, University of Oxford.\\
   Since Oct. 2019 & Stipendiary Lecturer in Linguistics, Jesus College, University of Oxford.\\
   \longdate{Oct. 2018--\\[-0.5em] Sept. 2019} & Stipendiary Lecturer in Linguistics, St Hugh's College, University of Oxford.\\
@@ -409,8 +371,7 @@ Walton St., Oxford, OX1 2HG\\
   I have also organised a collaboration with researchers at the Goethe-Universit\"{a}t Frankfurt am Main, where I conducted a research visit in June 2018.
 \\
   \subhead{Future work} &%
-  % I have a number of psycholinguistic experiments planned to test the validity of certain theoretical claims, and also intend to delve more deeply into the semantic properties of idioms.
-  Sascha Bargmann, Manfred Sailer and I are developing a semantic theory of the `extended' use of idioms, exemplified in e.g. \textit{Once this cat is out of the bag, a lot of people are going to get scratched}, where the underlying metaphor is used to make sense of a figurative continuation (\sref{creative-power-metaphor-poster}, \sref{europhras2019-talk}, \sref{manchester-seminar}, \sref{fmm2018}). I ultimately plan to synthesise these findings with my thesis work into a book.
+  I have a number of psycholinguistic experiments planned to test the validity of certain theoretical claims, and also intend to delve more deeply into the semantic properties of idioms. Sascha Bargmann, Manfred Sailer and I are developing a semantic theory of the `extended' use of idioms, exemplified in e.g. \textit{Once this cat is out of the bag, a lot of people are going to get scratched}, where the underlying metaphor is used to make sense of a figurative continuation (\sref{creative-power-metaphor-poster}, \sref{europhras2019-talk}, \sref{manchester-seminar}, \sref{fmm2018}). I ultimately plan to synthesise these findings with my thesis work into a book.
 \end{cvsection}
 
 \REx{Honorification in Korean}{pragmatics}
@@ -422,7 +383,7 @@ Walton St., Oxford, OX1 2HG\\
   We have presented this work at the annual meeting of the LAGB (\sref{lagb2017-talk}) and at LangUE, a postgraduate student conference at the University of Essex (\sref{langue2017-talk}), as well as at a number of informal venues.%
 \\
   \subhead{Future work} &%
-  We intend to run behavioural experiments in the near future to test some of our claims, and will then submit an article to the \textit{Journal of Pragmatics}.
+  We intend to submit an article to the \textit{Journal of Pragmatics} in the near future.
 \end{cvsection}
 
 \REx{Discourses of homosexuality}{sociolinguistics, corpus linguistics}
@@ -451,41 +412,47 @@ Walton St., Oxford, OX1 2HG\\
 
 \section*{Teaching}
 
-I have taught \textbf{syntax}, \textbf{semantics \& pragmatics}, \textbf{sociolinguistics}, \textbf{psycholinguistics}, and \textbf{general linguistics} at both the introductory and advanced undergraduate level. At the graduate level, I have led courses in \textbf{syntax}, and TA-ed for courses in \textbf{syntax}, \textbf{phonology}, and \textbf{formal foundations of linguistics} (the latter being an introduction to set theory, logic, and formal language theory for linguists). This teaching experience covers small group and tutorial settings, larger classes, and lectures, including designing tutorial courses and lecture series. I hold a SEDA-PDF Supporting Learning award (see above).
+I have taught \textbf{syntax}, \textbf{semantics \& pragmatics}, \textbf{sociolinguistics}, \textbf{psycholinguistics}, and \textbf{general linguistics} at both the introductory and advanced undergraduate level. At the graduate level, I have TA-ed classes in \textbf{syntax}, \textbf{phonology}, and \textbf{formal foundations of linguistics} (an introduction to set theory, logic, and formal language theory for linguists). This teaching experience covers small group and tutorial settings, larger classes, and lectures, including designing tutorial courses and lecture series. I hold a SEDA-PDF Supporting Learning award (see above).
 \\[1em]
-\note\ In this section, a date which consists solely of a year or range of years refers to the academic calendar (e.g. 2017 = the 2017/18 academic year).
+\note\ In this section, years shown stand for the academic year which starts in that calendar year (e.g. 2017 = the 2017/18 academic year).
 
 \subsection*{University of Oxford}
-\note\ At Oxford, `Prelims' = first year undergraduate level; `FHS (Final Honour School)' = advanced undergraduate level. Courses marked with $\mathcal{C}$ are those where I have also been course convenor, responsible for setting and marking the exam and for various administrative\slash organisational duties in addition to teaching.
+\note\ At Oxford, `Prelims' = first year undergraduate level; `FHS (Final Honour School)' = advanced undergraduate level.
+
+\subsubsection*{As course convenor}
+
+\begin{cvsection}
+      2019      &   \Note{%
+                    Prelims Grammatical Analysis.}
+                    {An introduction to both syntax and morphology.}\\
+      2018	    &	FHS Psycholinguistics. \\
+      % (co-ordinating and delivering tutorial teaching, as well as setting and marking the final exam).\\
+\end{cvsection}
 
 \subsubsection*{As lecturer}
 \begin{cvsection}
     2019        & Graduate Advanced Syntax ('Contemporary syntactic theory').\\
-    \conv2019        & Graduate Introduction to Syntax.\\
+    2019        & Graduate Introduction to Syntax.\\
     2018        & Prelims Psycholinguistics.\\
-    2017        & Prelims Semantics \& Pragmatics.\\
+    2017        & Prelims Semantics \& pragmatics.\\
     2016--2017  & Occasional lectures in undergraduate and graduate syntax.
 \end{cvsection}
 
 \subsubsection*{As tutor}
 \begin{cvsection}
-    2018--2019  & \Note{%
+  2018--2019        & \Note{%
                 FHS General Linguistics (group size: 2--3).}
                 {A survey module which covers the historical developments of linguistic theory since the 19th century\\[-0.5em] along with some big-picture questions about e.g. the nature of variation in language or the possibility\\[-0.5em] of an adequate semantic theory.}\\
-    \longdate{2017--2019}
-                &	FHS Sociolinguistics (group size: 1--3).\\
-    \longdate{2014, \\[-0.5em] 2018--2019}
-                &	\Note{%
-                Prelims General Linguistics (group size: 2--3).}
+  \longdate{2014, \\[-0.5em] 2018--2019}
+                    &	\Note{%
+                Prelims General Linguistics (group size: 2).}
                 {An introductory course which covers topics in general linguistics proper, along with psycholinguistics,\\[-0.5em] semantics \& pragmatics, sociolinguistics, and historical  linguistics.}\\
-    \longdate{\conv2014, \\[-0.5em] 2018--2019}
-                & \Note{%
-                Prelims Grammatical Analysis  (group size: 3--6).}
-                {An introduction to both syntax and morphology.}\\
-    \longdate{2014--2016,\\[-0.5em] 2019}
-                & FHS Syntax (group size: 1--3).\\
-    \conv2018	&	FHS Psycholinguistics (group size: 1--3).\\
-    2014--2017  & FHS Semantics \& Pragmatics (group size: 1--3).\\
+  \longdate{2014, \\[-0.5em] 2018--2019}
+                    & Prelims Grammatical Analysis (group size: 3--6).\\
+  2018	      &	FHS Psycholinguistics (group size: 1--3).\\
+  2017--2018  &	FHS Sociolinguistics (group size: 1--3).\\
+  2014--2017  & FHS Semantics \& Pragmatics (group size: 1--3).\\
+  2014--2016  & FHS Syntax (group size: 1--3).\\
 \end{cvsection}
 
 \newpage
@@ -506,31 +473,14 @@ I have taught \textbf{syntax}, \textbf{semantics \& pragmatics}, \textbf{socioli
                   {An introduction to sociolinguistics for first year English language and literature undergraduates.\\
                   Handout available \href{http://users.ox.ac.uk/~sjoh2787/socio_presentation.pdf}{\uline{here}}.}\\
     2017        & Graduate class on corpus methods in sociolinguistics.\\
-    \longdate{2016--2017,\\[-0.5em] 2019}	& \Note{%
-                  Workshops: `\LaTeX* basics', `Going further with \LaTeX*'.}
+    2016--2017	& \Note{%
+                  Workshops: `\LaTeX* basics', `Advanced topics in \LaTeX*'.}
                   {Two workshops to introduce graduate students in linguistics to \LaTeX*.\\
-                  Handouts available \href{http://users.ox.ac.uk/~sjoh2787/latex-basics.pdf}{\uline{here}} and \href{http://users.ox.ac.uk/~sjoh2787/latex-going-further.pdf}{\uline{here}}.}\\
+                  Handouts available \href{http://users.ox.ac.uk/~sjoh2787/latex-basics.pdf}{\uline{here}} and \href{http://users.ox.ac.uk/~sjoh2787/latex-advanced-topics.pdf}{\uline{here}}.}\\
         %
       	% \parbox[t]{\datewidth\textwidth}{\raggedleft
           % 25 Jan., 2017,\\ 5 Mar. 2019}
 \end{cvsection}
-
-%%==========================================================================%%
-% \newpage
-\section*{Supervision}
-
-\subsection*{Graduate supervision (University of Oxford)}
-
-\begin{cvsection}
-    2020    & Chenyu Fang. Extended essay in syntax. Title (tbc): \textit{An LFG analysis of anaphoric \emph{(ta)-ziji} in Mandarin Chinese}. M.St. in Linguistics, Philology and Phonetics.
-\end{cvsection}
-
-\subsection*{Undergraduate supervision (University of Oxford)}
-
-\begin{cvsection}
-    2020 & Caitlyn McDermott. Linguistic project (thesis with a large data collection\slash analysis component). Title tbc (discourse analysis of US media representations of mass shootings). BA in Psychology \& Linguistics.
-\end{cvsection}
-
 
 
 %%==========================================================================%%
@@ -547,14 +497,14 @@ I have taught \textbf{syntax}, \textbf{semantics \& pragmatics}, \textbf{socioli
   2015--2017
   & \Note{%
                 Professor Paul Slack Scholarship, Linacre College, University of Oxford.}
-                {Total value: \textasciitilde{}£14,000 (fees for first 2 years of D.Phil.).}\\
+                {All fees covered; total value: \textasciitilde{}£14,000.}\\
   %
   % \longdate{%
   % Oct. 2015--\\[-0.5em] June 2017}
   2015--2017
   & \Note{%
                 AHRC Studentship, Faculty of Linguistics, Philology \& Phonetics, University of Oxford.}
-                {Total value: £28,353 (living costs for first 2 years of D.Phil.).}\\
+                {Total value: £28,353.}\\
   %
   July 2014	  & George Wolf Prize for best overall performance in the M.Phil.
                 or M.St. degree, Faculty of Linguistics, Philology \& Phonetics, University of Oxford.\\
@@ -567,11 +517,11 @@ I have taught \textbf{syntax}, \textbf{semantics \& pragmatics}, \textbf{socioli
   2012--2014
   & \Note{%
                 AHRC Studentship, Faculty of Linguistics, Philology \& Phonetics, University of Oxford.}
-                {Total value: \textasciitilde{}£38,000 (fees and living costs for M.Phil.).}\\
+                {Total value: \textasciitilde{}£38,000.}\\
   %
   2011		    & \Note{%
                 McCall McBain Fellowship, McGill University.}
-                {Total value: \textasciitilde{}CAN\$62,000 (fees and living costs for 2-year MA degree); partially declined.}\\
+                {Total value: \textasciitilde{}CAN\$62,000 for 2 years; partially declined.}\\
   %
   % \longdate{%
   % Oct. 2008--\\[-0.5em] June 2011}
@@ -587,25 +537,20 @@ I have taught \textbf{syntax}, \textbf{semantics \& pragmatics}, \textbf{socioli
 
 \subsection*{To the department}
 \begin{cvsection}
-    \longdate{Jan.--Mar. 2018,\\[-0.5em] since Jan. 2020}
-                & Convenor, Syntax Working Group, University of Oxford (for three terms: HT18, HT20, TT20).\\
-    Since Oct. 2019
-                & \Note{%
-                Personal tutor and Linguistics Organising Tutor, Jesus College.}
+  2019--2020  & \Note{%
+                Personal tutor and `Linguistics Organising Tutor', Jesus College.}
                 {Providing pastoral support and coordinating teaching for undergraduate linguistics students.}\\
-    Since Oct. 2018
-                & Member of Undergraduate Studies Committee, Faculty of
+  2018--2020  & Member of Undergraduate Studies Committee, Faculty of
                 Linguistics, Philology \& Phonetics, University of Oxford.\\
-    Since Dec. 2015
-                & Admissions interviewing for undergraduate degrees involving
+  2015--2019  & Admissions interviewing for undergraduate degrees involving
                 linguistics, University of Oxford.\\
-    \longdate{Oct. 2018--\\[-0.5em] Sept. 2019}
-                & Personal tutor and Linguistics Organising Tutor, St Hugh's College.\\
-    \longdate{Oct. 2017--\\[-0.5em] June 2018}
-                & Co-founder and co-convenor, D.Phil. workshop, Faculty of
-                Linguistics, Philology \& Phonetics, University of Oxford.
-    % 2008--2009  & President, Oxford University Linguistics Society.\\
-    % 2007--2009  & Student representative, Faculty of Linguistics, Philology \&
+  2018--2019  & Personal tutor and Linguistics Organising Tutor, St Hugh's College.\\
+  2017--2018  & Co-founder and co-convenor, D.Phil. workshop, Faculty of
+                Linguistics, Philology \& Phonetics, University of Oxford.\\
+  2017 		  & Convenor (Hilary Term), Syntax Working Group, University of
+                Oxford.
+  % 2008--2009  & President, Oxford University Linguistics Society.\\
+  % 2007--2009  & Student representative, Faculty of Linguistics, Philology \&
                 % Phonetics, University of Oxford.\\
 \end{cvsection}
 
@@ -613,22 +558,18 @@ I have taught \textbf{syntax}, \textbf{semantics \& pragmatics}, \textbf{socioli
 \begin{cvsection}
 \Label{Grant\\[-0.5ex] reviewer} &
                     Narodowe Centrum Nauki (Polish National Science Centre)~(2019).\\
-\Label{Manuscript  \\[-0.5ex] reviewer} &
-                \begin{reviewlist}
-                \item \textit{Corpora and Discourse Studies}~(2018),
-                \item \textit{Journal of Language and Sexuality}~(2019),
-                \item \textit{Journal of Linguistics}~(2015, 2017, 2019),
-                \item \textit{Poznan Studies in Contemporary Linguistics}~(2019),
-                \item \textit{Proceedings of the LFG Conference}~(2018, 2019),
-                \item  \textit{Syntax}~(2020).
-                \end{reviewlist}
-                 \\[\squish]
+\Label{Manuscript\\[-0.5ex] reviewer} &
+                    \textit{Syntax}~(2020),
+                    \textit{Poznan Studies in Contemporary Linguistics}~(2019),
+                    \textit{Journal of Language and Sexuality}~(2019),
+                    \textit{Proceedings of the LFG Conference}~(2018, 2019),
+                    \textit{Corpora and Discourse Studies}~(2018),
+                    \textit{Journal of Linguistics}~(2015, 2017, 2019).
+                     \\
 \Label{Abstract\\[-0.5ex] reviewer}   &
-                \begin{reviewlist}
-                \item \textit{Conference of the Student Organisation of Linguistics in Europe (ConSOLE)}~(2018),
-                \item \textit{International Lexical Functional Grammar Conference} (2019, 2020).
-                \end{reviewlist}
-                \\[\squish]
+                    \textit{International Lexical Functional Grammar Conference} (2019, 2020),
+                    \textit{Conference of the Student Organisation of Linguistics in Europe (ConSOLE)}~(2018).
+                    \\
 \Label{Marker}      & UK Linguistics Olympiad~(since 2014).\\
 \Label{Copy editor} & \textit{Journal of Language Modelling} (since 2017).
 \end{cvsection}
@@ -638,24 +579,11 @@ I have taught \textbf{syntax}, \textbf{semantics \& pragmatics}, \textbf{socioli
 \section*{Languages}
 
 \begin{cvsection}
-  \Label{Natural}      &    \begin{languagelist}
-                                \item English~(native),
-                                \item French~(advanced),
-                                \item Latin~(intermediate),
-                                \item German~(basic).
-                            \end{languagelist}
-                                \\[\squish]
-  \Label{Programming}  &    \begin{languagelist}
-                                \item Bash (Unix shell),
-                                \item Python.
-                            \end{languagelist}
-                                \\[\squish]
-  \Label{Markup}       &    \begin{languagelist}
-                                \item \LaTeX*\slash Bib\TeX*,
-                                \item HTML\slash CSS.
-                            \end{languagelist}
+  \Label{Natural}      & English~(native), French~(near-fluent),
+                          Latin~(intermediate), German~(basic). \\
+  \Label{Programming}  & Bash (Unix shell), Python. \\
+  \Label{Markup}       & \LaTeX*\slash Bib\TeX*, HTML\slash CSS.
 \end{cvsection}
-
 
 %%==========================================================================%%
 
@@ -692,7 +620,7 @@ I have taught \textbf{syntax}, \textbf{semantics \& pragmatics}, \textbf{socioli
 
 \subsection*{Thesis}
 
-\Ref{thesis}{2019\marginlinkout{thesis}{https://ora.ox.ac.uk/objects/uuid:502e8ca5-02f7-4be4-8778-cd89364ba670/download_file?file_format=pdf&safe_filename=findlay-thesis-deposit.pdf&type_of_work=Thesis}}{Jamie Y. Findlay. \textit{Multiword expressions and the lexicon.} D.Phil. thesis, University of Oxford.}
+\Ref{thesis}{2019\marginlink{thesis}{findlay-thesis.pdf}}{Jamie Y. Findlay. \textit{Multiword expressions and the lexicon.} D.Phil. thesis, University of Oxford.}
 
 \subsection*{Articles in Refereed Journals and Books}
 
@@ -715,15 +643,12 @@ I have taught \textbf{syntax}, \textbf{semantics \& pragmatics}, \textbf{socioli
 
 \subsection*{Refereed Presentations}
 
-\Ref*{iccg11-talk}{\sout{20--22 Aug., 2020} [Delayed until 2021 due to COVID-19]}{Constructions in LFG. To be presented at the Workshop on Constructional Approaches in Formal Grammar at the 11th International Conference on Construction Grammar (ICCG11), University of Antwerp.}
-
-\Ref*{lfg2020-talk}{23--25 June, 2020}{Lexical Mapping Theory and the anatomy of a lexical entry. To be presented (online) at the 25th International Lexical Functional Grammar Conference, University of Oslo.}
-
 \Ref*{creative-power-metaphor-poster}{30 Mar., 2019\poster{FBS-poster.pdf}}{Extended idioms as metaphors. Joint work with Sascha Bargmann and Manfred Sailer. Poster presented at the Conference on the Creative Power of Metaphor, Worcester College, University of Oxford.}%
 %Idiomaticity, creativity, and metaphor
+% \newpage
 
 \Ref*{europhras2019-talk}{24 Jan., 2019\slides{europhras19.pdf}}{Why the butterflies in your stomach can have big wings: combining formal and cognitive theories to explain productive extensions of idioms. Joint work with Sascha Bargmann and Manfred Sailer. Presented at the International Conference of the Europ\"{a}ische Gesellschaft f\"{u}r Phraseologie (EUROPHRAS 2019): Productive Patterns in Phraseology, Santiago de Compostela, Spain.}
-
+\newpage
 \Ref*{lfg2018-talk}{18 July, 2018\slides{findlay-senior-lfg2018-slides.pdf}}{Lexical and grammatical meaning: attributive adjectives in French. Joint work with Hannah Senior. Presented at the 23rd International Lexical Functional Grammar Conference, University of Vienna.}
 
 \Ref*{dgfs2018-talk}{8 Mar., 2018\slides{findlay-dgfs-slides.pdf}}{Conspiracy theories: the problem with lexical approaches to idioms. Presented at the Workshop on One-to-Many Relations in Morphology, Syntax and Semantics at the 40th Annual Meeting of the Deutsche Gesellschaft f\"{u}r Sprachwissenschaft (DGfS 2018), Universit\"{a}t Stuttgart.}
@@ -753,9 +678,9 @@ I have taught \textbf{syntax}, \textbf{semantics \& pragmatics}, \textbf{socioli
 \Ref*{fmm2018}{4 Aug., 2018\slides{fmm2018.pdf}}{Pulling a pretence rabbit out of the hat. Joint work with Sascha Bargmann and Manfred Sailer. Presented (by Manfred Sailer) at the Workshop on Form-Meaning Mismatches in Natural Language (FMM2018), Georg-August-Univers\"{a}t G\"{o}ttingen.}
 
 \Ref*{selfg25}{26 May, 2018\handout{se-lfg25.pdf}}{Lexicalised LFG. Presented at the 25th South of England LFG Meeting, SOAS, London.}
-\newpage
-\Ref*{selfg23}{13 May, 2017\slides{kim_findlay-SELFG23-handout_slides.pdf}}{When the subject honorific brings honour to all: the expanding role of pragmatics in Korean honorification. Joint work with Yoolim Kim. Presented at the 23rd South of England LFG Meeting, SOAS, London.}
 
+\Ref*{selfg23}{13 May, 2017\slides{kim_findlay-SELFG23-handout_slides.pdf}}{When the subject honorific brings honour to all: the expanding role of pragmatics in Korean honorification. Joint work with Yoolim Kim. Presented at the 23rd South of England LFG Meeting, SOAS, London.}
+\newpage
 \Ref*{selfg22}{4 Feb., 2017\handout{SE-LFG_Feb2017-1up.pdf}}{Multiword expressions and lexicalism. Presented at the 22nd South of England LFG Meeting, SOAS, London.}
 
 \Ref*{selfg19}{20 Feb., 2016\handout{SELFG_Presentation_idioms.pdf}}{Idioms in LFG. Presented at the 19th South of England LFG Meeting, SOAS, London.}
