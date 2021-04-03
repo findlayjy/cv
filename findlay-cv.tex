@@ -76,7 +76,12 @@
 % \definecolor{green}{HTML}{39B54A}
 % \definecolor{oxfordblue}{RGB}{4,30,66}
 \definecolor{oxfordblue}{HTML}{002147}
+\definecolor{oslored}{HTML}{e2231a}
 \definecolor{hlinkcolor}{rgb}{.0,.2,.4}
+
+% Set the colour for the header and header rules
+\colorlet{headercolor}{oxfordblue}
+
 
 
 % Different heading command for research experience sections
@@ -89,7 +94,7 @@
 %Slightly nicer look but fits less in
 % \newcommand{\REx}[2]{%
 % \vspace*{0.5\baselineskip}%
-% % \rule[0.4ex]{\rulelength}{1pt}\hspace*{11pt}%
+% % % \rule[0.4ex]{\rulelength}{1pt}\hspace*{11pt}%
 % {\large\textbf{#1}\hfill\textnormal{[#2]}}%
 % \vspace*{0.7\baselineskip}%
 % }
@@ -278,11 +283,11 @@ linkcolor=hlinkcolor,%
 }
 
 % SECTION COMMANDS
-\newcommand{\cvheading}[1]{\noindent{{\color{oxfordblue}\rule[0.4ex]{\rulelength}{2pt}\hspace*{9pt} \Large #1}}\vspace*{0.5\baselineskip}}
+\newcommand{\cvheading}[1]{\noindent{{\color{headercolor}\rule[0.4ex]{\rulelength}{2pt}\hspace*{9pt} \Large #1}}\vspace*{0.5\baselineskip}}
 
 \newcommand{\cvsubhead}[1]{\noindent\hspace*{\rulelength}\hspace*{9pt} \textsc{#1}\vspace*{0.25\baselineskip}}
 
-\newcommand{\rulesubhead}[1]{\noindent{\color{oxfordblue}\rule[0.4ex]{\rulelength}{1pt}\hspace*{9pt} {#1}}\vspace*{0.25\baselineskip}}
+\newcommand{\rulesubhead}[1]{\noindent{\color{headercolor}\rule[0.4ex]{\rulelength}{1pt}\hspace*{9pt} {#1}}\vspace*{0.25\baselineskip}}
 
 \newcommand{\cvsubsubhead}[1]{\noindent\hspace*{\rulelength}\hspace*{9pt} \textit{#1}\vspace*{0.25\baselineskip}}
 
