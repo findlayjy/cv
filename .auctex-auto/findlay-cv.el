@@ -93,7 +93,9 @@
     "gold"
     "green"
     "oxfordblue"
-    "hlinkcolor")
+    "oslored"
+    "hlinkcolor"
+    "headercolor")
    (LaTeX-add-array-newcolumntypes
     "L"
     "R"))

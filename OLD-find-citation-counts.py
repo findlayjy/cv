@@ -1,6 +1,7 @@
 from scholarly import scholarly, ProxyGenerator
 import re
-import datetime
+import time
+start_time = time.time()
 
 # Google doesn't like bots and will block you, so scholarly lets you use proxies to get around this
 
@@ -15,15 +16,14 @@ pg.Tor_Internal(tor_cmd = "tor")
 scholarly.use_proxy(pg)
 
 # Load my profile using my unique ID (the part after 'user=' in your profile URL)
-my_profile = scholarly.fill(scholarly.search_author_id('Q2v46FwAAAAJ'))
+my_profile = scholarly.fill(scholarly.search_author_id('Q2v46FwAAAAJ'), sections = ['publications'])
 
 # A case-insensitive regular expression to capture variations on my name
 name_regex = re.compile('J(\.|amie)? ?Y?(\.|ates)? ?Findlay', re.IGNORECASE)
 
-publications_list = []
 for publication in my_profile['publications']:
     others_cite_count = 0
-    if 'citedby_url' in scholarly.fill(publication): # Entries with no citations have no citedby_url key(?) and this will cause the script to fails
+    if 'citedby_url' in scholarly.fill(publication): # Entries with no citations have no citedby_url key(?) and this will cause the script to fail
         citers = scholarly.citedby(publication)
         for pub in citers:
             if not [x for x in pub['bib']['author'] if re.match(name_regex, x)]: # Check that I'm not the author
@@ -36,3 +36,5 @@ for publication in my_profile['publications']:
 
 # Print a list of publications in date order, most recent first, with non-self-citations, and total citations in square brackets
 # [print(f"{pub['bib']['title']}: {pub['others cite count']} [{pub['num_citations']}]") for pub in sorted(my_profile['publications'], key = lambda x: x['bib']['pub_year'], reverse = True)]
+
+print(f"--- {time.time() - start_time} ---")
