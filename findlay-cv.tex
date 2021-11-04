@@ -167,11 +167,6 @@ linkcolor=hlinkcolor,%
 
 \urlstyle{same}
 
-\newcommand{\mylink}[2]{\href{http://users.ox.ac.uk/~sjoh2787/#1}{#2}}
-
-\WithSuffix\newcommand\mylink*[2]{\href{http://users.ox.ac.uk/~sjoh2787/#1}{\uline{#2}}}
-
-\newcommand{\linkout}[2]{\href{#1}{#2}}
 
 % Enable margin notes everywhere
 \usepackage{marginnote}
@@ -226,9 +221,18 @@ linkcolor=hlinkcolor,%
   \hspace*{0.5em}%
   #3%
   \vspace*{0.7ex}%
-  }
+}
 
-% Version of \linkout with typewriter font and square brackets
+%% Commands for hyperlinks
+
+% Files stored in my webspace -- set the first part to wherever things live at the moment
+\newcommand{\mylink}[2]{\href{http://users.ox.ac.uk/~sjoh2787/#1}{#2}}
+% Starred version with underlining
+\WithSuffix\newcommand\mylink*[2]{\href{http://users.ox.ac.uk/~sjoh2787/#1}{\uline{#2}}}
+
+% For links to other URLs
+\newcommand{\linkout}[2]{\href{#1}{#2}}
+% Version with typewriter font and square brackets
 \newcommand{\publinkout}[2]{\href{#1}{\texttt{[#2]}}}
 
 % Link commands for presentations
@@ -236,9 +240,7 @@ linkcolor=hlinkcolor,%
 \newcommand{\poster}[1]{\mylink{#1}{\texttt{[poster]}}}
 \newcommand{\slides}[1]{\mylink{#1}{\texttt{[slides]}}}
 
-
-
-% Command for open access links, which takes a colour argument
+% Command for open access links, which takes a colour argument -- NOT CURRENTLY IN USE
 \newcommand{\oa}[2]{\marginnote{\hspace*{-1em}{\href{#2}{\texttt{[\textcolor{#1}{paper}]}}}}}
 
 % Puts square brackets around label numbers when x-ref'd
@@ -354,7 +356,7 @@ $\mathcal{C}''\hfill%
   \longdate{01/12/2019--\\31/03/2021} & \textbf{Outreach \& Access Officer} (for linguistics), University of Oxford.\\
   \longdate{01/10/2019--\\31/03/2021} & \textbf{Departmental Lecturer in Syntax}, University of Oxford.\\
   \longdate{01/10/2019--\\ 30/09/2020}& \textbf{Stipendiary Lecturer in Linguistics}, Jesus College, University of Oxford.\\
-  \longdate{01/10/2018--\\ 30/092019} & \textbf{Stipendiary Lecturer in Linguistics}, St Hugh's College, University of Oxford.
+  \longdate{01/10/2018--\\ 30/09/2019} & \textbf{Stipendiary Lecturer in Linguistics}, St Hugh's College, University of Oxford.
 \end{cvsection}
 
 %%==========================================================================%%
@@ -493,6 +495,15 @@ $\mathcal{C}''\hfill%
   I have taught \textbf{syntax}, \textbf{semantics \& pragmatics}, \textbf{sociolinguistics}, \textbf{psycholinguistics}, and \textbf{general linguistics} at both the introductory and advanced undergraduate level. At the graduate level, I have led courses in \textbf{syntax}, and TA-ed for courses in \textbf{syntax}, \textbf{phonology}, and \textbf{formal foundations of linguistics} (the latter being an introduction to set theory, logic, and formal language theory for linguists). This teaching experience covers small group and tutorial settings, larger classes, and lectures, including designing tutorial courses and lecture series. I hold a SEDA-PDF Supporting Learning award (see above).\\
   & In this section, years refer to the academic calendar (e.g. 2017 = the
   2017/18 academic year).
+\end{cvsection}
+
+\rulesubhead{University of Oslo}
+
+\cvsubhead{First year undergraduate level}
+
+\begin{cvsection}
+  2021 & \Note{\textbf{Sociolinguistics} (seminars -- group size: ??)}{Half of
+          LING1113, `Psycholinguistics \& Sociolinguistics'}
 \end{cvsection}
 
 \rulesubhead{University of Oxford}
@@ -738,17 +749,18 @@ self-citations.
 
 \subsection*{Articles in Refereed Journals and Books}
 %
-\Reff*{arg-str-handbook-chapter}{In prep.}{Jamie Y. Findlay and Anna Kibort.
-  Argument structure and Mapping Theory. In Mary Dalrymple (ed.), \emph{Handbook
-    of Lexical Functional Grammar}. Language Science Press.}
+\Reff*{arg-str-handbook-chapter}{In prep.}{Jamie Y. Findlay, Anna Kibort and
+  Roxanne Taylor. Argument structure and Mapping Theory. In Mary Dalrymple
+  (ed.), \emph{Handbook of Lexical Functional Grammar}. Language Science Press.}
 
 \Reff*{lfg-tag-chapter}{In prep.}{Jamie Y. Findlay. LFG and Tree Adjoining
   Grammar. In Mary Dalrymple (ed.), \emph{Handbook of Lexical Functional
     Grammar}. Language Science Press.}
 
-\Reff*{meaning-in-lfg-chapter}{In press}{Jamie Y. Findlay. Meaning in LFG. In I.
-  Wayan Arka, Ash Asudeh, and Tracy Holloway King (eds.), \emph{Modular design
-    of grammar: linguistics on the edge}. Oxford University Press.}
+\Reff*{meaning-in-lfg-chapter}{2021}{Jamie Y. Findlay.
+  \mylink{festschrift-chapter.pdf}{Meaning in LFG}. In I. Wayan Arka, Ash
+  Asudeh, and Tracy Holloway King (eds.), \emph{Modular design of grammar:
+    linguistics on the edge}, 340--374. Oxford University Press.}
 
 \Reff{lfg-chapter}{2019}{Mary Dalrymple and Jamie Y. Findlay.
   \mylink{dalrymple_findlay-2019-lexical_functional_grammar.pdf}{Lexical
@@ -810,9 +822,10 @@ self-citations.
 
 \subsection*{Refereed Presentations}
 
-\Reff*{iccg11-talk}{20 Aug., 2021}{Constructions in LFG.  Presented online at the Workshop on
-  Constructional Approaches in Formal Grammar at the 11th International
-  Conference on Construction Grammar (ICCG11), University of Antwerp.}
+\Reff*{iccg11-talk}{20 Aug., 2021}{Constructions in LFG. Presented online at the
+  Workshop on Constructional Approaches in Formal Grammar at the 11th
+  International Conference on Construction Grammar (ICCG11), University of
+  Antwerp. \slides{iccg-handout-findlay.pdf}}
 
 \Reff*{lfg2020-talk}{25 June, 2020}{Lexical Mapping Theory and the anatomy of a
   lexical entry. Presented online at the 25th International Lexical Functional
