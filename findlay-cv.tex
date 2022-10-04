@@ -225,10 +225,13 @@ linkcolor=hlinkcolor,%
 
 %% Commands for hyperlinks
 
-% Files stored in my webspace -- set the first part to wherever things live at the moment
-\newcommand{\mylink}[2]{\href{http://users.ox.ac.uk/~sjoh2787/#1}{#2}}
+% Files stored in my webspace -- set the first macro to wherever things live at the moment
+\newcommand{\myrepo}{https://docs.google.com/viewer?url=https://github.com/findlayjy/papers/raw/main/research} % github
+
+% Link for files stored in my webspace
+\newcommand{\mylink}[2]{\href{\myrepo/#1}{#2}}
 % Starred version with underlining
-\WithSuffix\newcommand\mylink*[2]{\href{http://users.ox.ac.uk/~sjoh2787/#1}{\uline{#2}}}
+\WithSuffix\newcommand\mylink*[2]{\href{\myrepo/#1}{\uline{#2}}}
 
 % For links to other URLs
 \newcommand{\linkout}[2]{\href{#1}{#2}}
@@ -445,9 +448,9 @@ $\mathcal{C}''\hfill%
   \researchsubhead{Outputs} &%
   We presented some of our initial findings on the inadequacies of existing
   quasi-semantic extensions to UD at the 2021 Dependency Linguistics conference
-  (\sref{depling21}), and will present a new theoretical approach to handling
-  scope islands in Glue Semantics at the LFG conference this year
-  (\sref{lfg22-talk}).
+  (\sref{depling21}), and presented a new theoretical approach to handling
+  scope islands in Glue Semantics at the 2022 Lexical Functional Grammar conference
+  (\sref{lfg22-talk}), which will appear in the proceedings.
 \end{cvsection}
 
 \REx{Multiword expressions and the lexicon}{syntax, semantics}
@@ -497,15 +500,6 @@ $\mathcal{C}''\hfill%
   2017/18 academic year).
 \end{cvsection}
 
-% \rulesubhead{University of Oslo}
-
-% \cvsubhead{First year undergraduate level}
-
-% \begin{cvsection}
-%   2021 & \Note{\textbf{Sociolinguistics} (seminars -- group size: ??)}{Half of
-%           LING1113, `Psycholinguistics \& Sociolinguistics'}
-% \end{cvsection}
-
 \rulesubhead{University of Oslo}
 
 \cvsubhead{Undergraduate level}
@@ -514,7 +508,7 @@ $\mathcal{C}''\hfill%
 
 \begin{cvsection}
   2021  & \Note{\textbf{Psycholinguistics and sociolinguistics} (lectures -- group size: \textasciitilde{}20).}{[LING1113: Psykolingvistikk og sosiolingvistikk]}\\
-  % 2022  & \Note{\textbf{Language change}}{[LING2108: Språkendring]}
+  2022  & \Note{\textbf{Language change} (lectures -- group size: \textasciitilde{}20)}{[LING2108: Språkendring]}
 \end{cvsection}
 
 
@@ -681,9 +675,9 @@ $\mathcal{C}''\hfill%
 \Label{Manuscript reviewer} &
                 \begin{reviewlist}
                 \item \textit{Corpora and Discourse Studies}~(2018),
-                \item \textit{Handbook of Lexical Functional Grammar} [Language Science Press]~(two chapters: 2020, 2022),
                 \item \textit{Journal of Language and Sexuality}~(2019),
                 \item \textit{Journal of Linguistics}~(2015, 2017, 2019),
+                \item Language Science Press~(two chapters: 2020, 2022),
                 \item \textit{Poznan Studies in Contemporary Linguistics}~(2019),
                 \item \textit{Proceedings of the LFG Conference}~(2018--present),
                 \item  \textit{Syntax}~(2020).
@@ -692,7 +686,7 @@ $\mathcal{C}''\hfill%
 \Label{Abstract reviewer}   &
                 \begin{reviewlist}
                 \item \textit{Conference of the Student Organisation of Linguistics in Europe (ConSOLE)}~(2018),
-                \item \textit{International Lexical Functional Grammar Conference} (2019--2021).
+                \item \textit{International Lexical Functional Grammar Conference} (2019--present).
                 \end{reviewlist}
                 \\[\squish]
 \Label{Marker}      & UK Linguistics Olympiad~(since 2014).\\
@@ -715,7 +709,7 @@ $\mathcal{C}''\hfill%
 
 
 %%==========================================================================%%
-% \newpage
+\newpage
 \cvheading{Languages}
 
 \begin{cvsection}
@@ -728,7 +722,7 @@ $\mathcal{C}''\hfill%
 
 
 %%==========================================================================%%
-\newpage
+% \newpage
 \cvheading{Professional Memberships}
 
 \begin{cvsection}
@@ -751,8 +745,8 @@ $\mathcal{C}''\hfill%
 Where possible, clicking on a title will take you to an openly accessible version of that item. For conference presentations, I provide a link
 to the slides, handout, or poster, as appropriate.\medskip
 
-Number of citations is given per Google Scholar, and does not include
-self-citations.
+Number of citations is given per Google Scholar, after self-citations are
+excluded.
 
 \subsection*{Thesis}
 
@@ -772,7 +766,7 @@ self-citations.
     Grammar}. Language Science Press.}
 
 \Reff{meaning-in-lfg-chapter}{2021}{Jamie Y. Findlay.
-  \mylink{festschrift-chapter.pdf}{Meaning in LFG}. In I. Wayan Arka, Ash
+  \mylink{mary-festschrift-chapter.pdf}{Meaning in LFG}. In I. Wayan Arka, Ash
   Asudeh, and Tracy Holloway King (eds.), \emph{Modular design of grammar:
     linguistics on the edge}, 340--374. Oxford University Press. \hfill[1
   citation]}
@@ -783,7 +777,7 @@ self-citations.
   R\'{a}kosi (eds.), \emph{Current approaches to syntax: a comparative
     handbook}, 123--154. De Gruyter Mouton. DOI:
   \href{https://doi.org/10.1515/9783110540253-005}{10.1515/9783110540253-005}.
-  \hfill[1 citation]}
+  \hfill[4 citations]}
 
 \Reff{house-of-lords-paper}{2017}{Jamie Y. Findlay.
   \mylink{house_of_lords.pdf}{Unnatural acts lead to unconsummated marriages:
@@ -793,16 +787,17 @@ self-citations.
   citations]}
 
 \Reff{arg-str-paper}{2016}{Jamie Y. Findlay.
-  \linkout{http://jlm.ipipan.waw.pl/index.php/JLM/article/view/171/14}{Mapping
-    theory without argument structure}. \emph{Journal of Language Modelling}
-  4(2), 293--338. DOI:
-  \href{http://dx.doi.org/10.15398/jlm.v4i2.171}{10.15398/jlm.v4i2.171}.
-  \hfill[37 citations]}
+  \linkout{http://dx.doi.org/10.15398/jlm.v4i2.171}{Mapping theory without
+    argument structure}. \emph{Journal of Language Modelling} 4(2), 293--338.
+  DOI: \href{http://dx.doi.org/10.15398/jlm.v4i2.171}{10.15398/jlm.v4i2.171}.
+  \hfill[40 citations]}
 
 \Reff{bmj-paper}{2013}{Janak Bechar, Jamie Y. Findlay, and Joseph Hardwicke.
   \mylink{medical_terminology.pdf}{Understanding medical words of Greek and
     Latin origin}. \emph{Student BMJ} 21. DOI:
   \href{https://doi.org/10.1136/sbmj.f7394}{10.1136/sbmj.f7394}.}
+
+\newpage
 
 \subsection*{Articles in Refereed Conference Proceedings}
 
@@ -816,14 +811,12 @@ self-citations.
   \href{http://web.stanford.edu/group/cslipublications/cslipublications/LFG/LFG-2020/lfg2020-findlay.pdf}{Mapping
     Theory and the anatomy of a verbal lexical entry}. In Miriam Butt and Ida
   Toivonen (eds.), \emph{Proceedings of the LFG'20 Conference}, 127--147.
-  Stanford, CA: CSLI Publications. \hfill[6 citations]}
+  Stanford, CA: CSLI Publications. \hfill[9 citations]}
 
 \Reff{lfg2017}{2017}{Jamie Y. Findlay. \href{http://web.stanford.edu/group/cslipublications/cslipublications/LFG/LFG-2017/lfg2017-findlay.pdf}{Multiword
     expressions and lexicalism}. In Miriam Butt and Tracy Holloway King (eds.),
   \emph{Proceedings of the LFG'17 Conference}, 209--229. Stanford, CA: CSLI
   Publications. \hfill[1 citation]}
-
-\newpage
 
 \Reff{eacl2017}{2017}{Jamie Y. Findlay.
   \linkout{https://www.aclweb.org/anthology/W17-1709.pdf}{Multiword expressions
@@ -844,10 +837,10 @@ self-citations.
 
 \subsection*{Refereed Presentations}
 
-\Reff*{lfg22-talk}{12--14 July, 2022}{Managing scope ambiguities in Glue via
-  multistage proving. Joint work with Dag T. T. Haug. To be presented at the
-  27th International Lexical Functional Grammar Conference, University of
-  Groningen.}
+\Reff*{lfg22-talk}{12 July, 2022}{Managing scope ambiguities in Glue via
+  multistage proving. Joint work with Dag T. T. Haug. Presented at the 27th
+  International Lexical Functional Grammar Conference, University of Groningen.
+  \slides{findlay-haug-lfg22-slides-handout.pdf}}
 
 \Reff*{depling21-talk}{22 Mar., 2022}{How useful are Enhanced Universal
   Dependencies for semantic interpretation? Presented online at the Sixth
@@ -868,18 +861,17 @@ self-citations.
   presented at the Conference on the Creative Power of Metaphor, Worcester
   College, University of Oxford. \poster{FBS-poster.pdf}}
 
-\Reff*{europhras2019-talk}{24 Jan., 2019}{Why the
-  butterflies in your stomach can have big wings: combining formal and cognitive
-  theories to explain productive extensions of idioms. Joint work with Sascha
-  Bargmann and Manfred Sailer. Presented at the International Conference of the
-  Europ\"{a}ische Gesellschaft f\"{u}r Phraseologie (EUROPHRAS 2019): Productive
-  Patterns in Phraseology, Santiago de Compostela, Spain. \slides{europhras19.pdf}}
+\Reff*{europhras2019-talk}{24 Jan., 2019}{Why the butterflies in your stomach
+  can have big wings: combining formal and cognitive theories to explain
+  productive extensions of idioms. Joint work with Sascha Bargmann and Manfred
+  Sailer. Presented at the International Conference of the Europ\"{a}ische
+  Gesellschaft f\"{u}r Phraseologie (EUROPHRAS 2019): Productive Patterns in
+  Phraseology, Santiago de Compostela, Spain. \slides{europhras19.pdf}}
 
-\Reff*{lfg2018-talk}{18 July,
-  2018}{Lexical and grammatical
-  meaning: attributive adjectives in French. Joint work with Hannah Senior.
-  Presented at the 23rd International Lexical Functional Grammar Conference,
-  University of Vienna. \slides{findlay-senior-lfg2018-slides.pdf}}
+\Reff*{lfg2018-talk}{18 July, 2018}{Lexical and grammatical meaning: attributive
+  adjectives in French. Joint work with Hannah Senior. Presented at the 23rd
+  International Lexical Functional Grammar Conference, University of Vienna.
+  \slides{findlay-senior-lfg2018-slides.pdf}}
 
 \Reff*{dgfs2018-talk}{8 Mar., 2018}{Conspiracy theories: the problem with
   lexical approaches to idioms. Presented at the Workshop on One-to-Many
@@ -887,47 +879,47 @@ self-citations.
   the Deutsche Gesellschaft f\"{u}r Sprachwissenschaft (DGfS 2018),
   Universit\"{a}t Stuttgart. \slides{findlay-dgfs-slides.pdf}}
 
-\Reff*{lagb2017-talk}{6 Sept., 2017}{The logic of
-  Korean honorification. Joint work with Yoolim Kim. Presented at the 2017
-  Annual Meeting of the Linguistics Association of Great Britain (LAGB 2017),
-  University of Kent, Canterbury. \slides{kim-findlay-lagb.pdf}}
+\Reff*{lagb2017-talk}{6 Sept., 2017}{The logic of Korean honorification. Joint
+  work with Yoolim Kim. Presented at the 2017 Annual Meeting of the Linguistics
+  Association of Great Britain (LAGB 2017), University of Kent, Canterbury.
+  \slides{kim-findlay-lagb.pdf}}
 
 \Reff*{lfg2017-talk}{27 July, 2017}{Multiword expressions and lexicalism.
   Presented at the 22nd International Lexical Functional Grammar Conference,
   University of Konstanz. \handout{lfg17_handout.pdf}}
 
-\Reff*{langue2017-talk}{15 June,
-  2017}{When the subject honorific
-  brings honour to all: the expanding role of pragmatics in Korean
-  honorification. Joint work with Yoolim Kim. Presented at the 12th Language at
-  the University of Essex Postgraduate Conference (LangUE 2017), Colchester. \slides{kim_findlay-LangUE2017-handout.pdf}}
-
-\Reff*{eacl2017-talk}{4 Apr., 2017}{Multiword
-  expressions and lexicalism: the view from LFG. Poster presented at the 13th
-  Workshop on Multiword Expressions (MWE 2017), Valencia. \poster{eacl_poster.pdf}}
-
-\Reff*{headlex-talk}{29 July, 2016}{The
-  prepositional passive in Lexical Functional Grammar. Presented at the Joint
-  2016 Conference on Head-driven Phrase Structure Grammar and Lexical Functional
-  Grammar (HeadLex16), Polish Academy of Sciences, Warsaw. \handout{HeadLex_Presentation.pdf}}
-
 \newpage
 
-\Reff*{igala2014-talk}{5 June, 2014}{Unnatural
-  acts lead to unconsummated marriages: discourses of homosexuality in the House
-  of Lords revisited. Presented at the 8th International Gender and Language
-  Association Conference, Simon Fraser University, Vancouver. \handout{IGALA8Presentation.pdf}}
+\Reff*{langue2017-talk}{15 June, 2017}{When the subject honorific brings honour
+  to all: the expanding role of pragmatics in Korean honorification. Joint work
+  with Yoolim Kim. Presented at the 12th Language at the University of Essex
+  Postgraduate Conference (LangUE 2017), Colchester.
+  \slides{kim_findlay-LangUE2017-handout.pdf}}
+
+\Reff*{eacl2017-talk}{4 Apr., 2017}{Multiword expressions and lexicalism: the
+  view from LFG. Poster presented at the 13th Workshop on Multiword Expressions
+  (MWE 2017), Valencia. \poster{eacl_poster.pdf}}
+
+\Reff*{headlex-talk}{29 July, 2016}{The prepositional passive in Lexical
+  Functional Grammar. Presented at the Joint 2016 Conference on Head-driven
+  Phrase Structure Grammar and Lexical Functional Grammar (HeadLex16), Polish
+  Academy of Sciences, Warsaw. \handout{HeadLex_Presentation.pdf}}
+
+\Reff*{igala2014-talk}{5 June, 2014}{Unnatural acts lead to unconsummated
+  marriages: discourses of homosexuality in the House of Lords revisited.
+  Presented at the 8th International Gender and Language Association Conference,
+  Simon Fraser University, Vancouver. \handout{IGALA8Presentation.pdf}}
 
 \subsection*{Invited Talks}
 
-\Reff*{manchester-seminar}{27 Nov.,
-  2018}{When the cat you let out of the bag
+\Reff*{manchester-seminar}{27 Nov., 2018}{When the cat you let out of the bag
   has claws: the role of metaphor in understanding idioms. Presented at the
-  Linguistics and English Language Research Seminar, University of Manchester. \slides{manchester-lel-seminar.pdf}}
+  Linguistics and English Language Research Seminar, University of Manchester.
+  \slides{manchester-lel-seminar.pdf}}
 
-\Reff*{frankfurt-seminar}{25 June, 2018}{How
-  (not) to analyse multiword expressions. Presented at the Linguistics
-  Oberseminar, Goethe-Universit\"{a}t Frankfurt am Main. \slides{frankfurt-oberseminar.pdf}}
+\Reff*{frankfurt-seminar}{25 June, 2018}{How (not) to analyse multiword
+  expressions. Presented at the Linguistics Oberseminar, Goethe-Universit\"{a}t
+  Frankfurt am Main. \slides{frankfurt-oberseminar.pdf}}
 
 \Reff*{soas-seminar-2017}{31 Jan., 2017}{The pseudopassive: not so phoney after
   all. Presented at the Linguistics Departmental Seminar Series, School of
@@ -938,8 +930,14 @@ self-citations.
 \subsection*{Other Presentations}
 
 \Reff*{selfg32}{21 May, 2022}{Managing scope ambiguities in Glue via multistage
-  proving. Joint work with Dag T. T. Haug. To be presented at the 32nd South of
-  England LFG Meeting, University of Oxford.}
+  proving. Joint work with Dag T. T. Haug. Presented at the 32nd South of
+  England LFG Meeting, University of Oxford.
+  \slides{findlay-haug-selfg32-slides-handout.pdf}}
+
+\Reff*{sin22}{4 May, 2022}{Universal Natural Language Understanding: combining
+  Universal Dependencies, Glue Semantics, and machine learning. Joint work with
+  Dag T. T. Haug. Presented at the 1st Semantics in Norway (SiN) workshop,
+  Helgaker. \slides{findlay-haug-sin22-slides-handout.pdf}}
 
 \Reff*{depling2021}{10 Dec., 2021}{Defrosting frozen metaphors: idiom extensions
   and the proper representation of idiomatic expressions. Presented at the
@@ -947,10 +945,10 @@ self-citations.
   Department of Linguistics and Scandinavian Studies, University of Oslo.
   \slides{dep-ling-sem-dec-2021.pdf}}
 
-\Reff*{fmm2018}{4 Aug., 2018}{Pulling a pretence rabbit out
-  of the hat. Joint work with Sascha Bargmann and Manfred Sailer. Presented (by
-  Manfred Sailer) at the Workshop on Form-Meaning Mismatches in Natural Language
-  (FMM2018), Georg-August-Univers\"{a}t G\"{o}ttingen. \slides{fmm2018.pdf}}
+\Reff*{fmm2018}{4 Aug., 2018}{Pulling a pretence rabbit out of the hat. Joint
+  work with Sascha Bargmann and Manfred Sailer. Presented (by Manfred Sailer) at
+  the Workshop on Form-Meaning Mismatches in Natural Language (FMM2018),
+  Georg-August-Univers\"{a}t G\"{o}ttingen. \slides{fmm2018.pdf}}
 
 \Reff*{selfg25}{26 May, 2018}{Lexicalised LFG. Presented at the 25th South of
   England LFG Meeting, SOAS, London. \handout{se-lfg25.pdf}}
@@ -970,6 +968,8 @@ self-citations.
 \Reff*{selfg15}{1 Nov., 2014}{Mapping theory without argument structure.
   Presented at the 15th South of England LFG Meeting, SOAS, London.
   \handout{SELFG_Presentation_mapping-theory.pdf}}
+
+\newpage
 
 \Reff*{mphil-prs}{22 Oct., 2013}{The pseudopassive: a Lexical Functional
   account. Presented at the MPhil/PRS Thesis Workshop, University of Oxford.
