@@ -4,14 +4,14 @@ import re
 # Google doesn't like bots and will block you, so scholarly lets you use proxies to get around this
 
 # This first option uses the pip free-proxy library, but it didn't solve the issue for me
-#pg = ProxyGenerator()
-#pg.FreeProxies()
-#scholarly.use_proxy(pg)
+# pg = ProxyGenerator()
+# pg.FreeProxies()
+# scholarly.use_proxy(pg)
 
 # This option uses Tor, but requires you to have a local install of Tor on your system
-#pg = ProxyGenerator()
-#pg.Tor_Internal(tor_cmd = "tor")
-#scholarly.use_proxy(pg)
+# pg = ProxyGenerator()
+# pg.Tor_Internal(tor_cmd = "tor")
+# scholarly.use_proxy(pg)
 
 # Load my profile using my unique ID (the part after 'user=' in your profile URL)
 my_profile = scholarly.fill(scholarly.search_author_id('Q2v46FwAAAAJ'), sections = ['publications'])
@@ -36,3 +36,5 @@ for publication in publications_list:
 
 # Print a list of publications in date order, most recent first, with non-self-citations, and total citations in square brackets
 # [print(f"{pub['bib']['title']}: {pub['others cite count']} [{pub['num_citations']}]") for pub in sorted(my_profile['publications'], key = lambda x: x['bib']['pub_year'], reverse = True)]
+#
+# TODO: parametrise this
