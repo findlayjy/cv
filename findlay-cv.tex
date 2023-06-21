@@ -223,28 +223,60 @@ linkcolor=hlinkcolor,%
   \vspace*{0.7ex}%
 }
 
-%% Commands for hyperlinks
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Commands for hyperlinks to the web %%=========================================================================
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Files stored in my webspace -- set the first macro to wherever things live at the moment
-\newcommand{\myrepo}{https://jyfindlay.com/papers/research} % github papers repo
+\newcommand{\myrepo}{https://jyfindlay.com/papers} % github papers repo
+
+% Assuming the following directory structure:
+% repo
+% └── research
+%     ├── drafts
+%     ├── papers
+%     └── talks
+% └── teaching
+\newcommand{\myresearch}{research}
+\newcommand{\myteaching}{teaching}
+\newcommand{\mytalks}{\myresearch/talks}
+\newcommand{\mypapers}{\myresearch/papers}
+\newcommand{\mydrafts}{\myresearch/drafts}
 
 % Link for files stored in my webspace
 \newcommand{\mylink}[2]{\href{\myrepo/#1}{#2}}
 % Starred version with underlining
 \WithSuffix\newcommand\mylink*[2]{\href{\myrepo/#1}{\uline{#2}}}
 
+% More specific links
+% Talks
+\newcommand{\mytalkslink}[2]{\mylink{\mytalks/#1}{#2}}
+\WithSuffix\newcommand\mytalkslink*[2]{\mylink*{\mytalks/#1}{#2}}
+% Papers
+\newcommand{\mypaperslink}[2]{\mylink{\mypapers/#1}{#2}}
+\WithSuffix\newcommand\mypaperslink*[2]{\mylink*{\myresearch/#1}{#2}}
+% Drafts
+\newcommand{\mydraftslink}[2]{\mylink{\mydrafts/#1}{#2}}
+\WithSuffix\newcommand\mydraftslink*[2]{\mylink*{\mydrafts/#1}{#2}}
+% Teaching
+\newcommand{\myteachinglink}[2]{\mylink{\myteaching/#1}{#2}}
+\WithSuffix\newcommand\myteachinglink*[2]{\mylink*{\myteaching/#1}{#2}}
+
+% Link commands for presentation types
+\newcommand{\handout}[1]{\mytalkslink{#1}{\texttt{[handout]}}}
+\newcommand{\poster}[1]{\mytalkslink{#1}{\texttt{[poster]}}}
+\newcommand{\slides}[1]{\mytalkslink{#1}{\texttt{[slides]}}}
+
 % For links to other URLs
 \newcommand{\linkout}[2]{\href{#1}{#2}}
 % Version with typewriter font and square brackets
-\newcommand{\publinkout}[2]{\href{#1}{\texttt{[#2]}}}
-
-% Link commands for presentations
-\newcommand{\handout}[1]{\mylink{#1}{\texttt{[handout]}}}
-\newcommand{\poster}[1]{\mylink{#1}{\texttt{[poster]}}}
-\newcommand{\slides}[1]{\mylink{#1}{\texttt{[slides]}}}
+% \newcommand{\publinkout}[2]{\href{#1}{\texttt{[#2]}}}
 
 % Command for open access links, which takes a colour argument -- NOT CURRENTLY IN USE
-\newcommand{\oa}[2]{\marginnote{\hspace*{-1em}{\href{#2}{\texttt{[\textcolor{#1}{paper}]}}}}}
+% \newcommand{\oa}[2]{\marginnote{\hspace*{-1em}{\href{#2}{\texttt{[\textcolor{#1}{paper}]}}}}}
+
+%================================================================================================================
+
 
 % Puts square brackets around label numbers when x-ref'd
 \newcommand{\sref}[1]{[\ref{#1}]}
@@ -401,7 +433,7 @@ $\mathcal{C}''\hfill%
   }%
   {Mapped to Descriptor 1 of the UK Professional Standards Framework: equivalent to Associate Fellow\\[-0.5em] of the Higher Education Academy.\\
     My portfolio submission is available online
-    \mylink*{portfolio-JYF-submission.pdf}{here}. }%
+    \myteachinglink*{portfolio-JYF-submission.pdf}{here}. }%
 \end{cvsection}
 
 %%==========================================================================%%
@@ -504,7 +536,7 @@ $\mathcal{C}''\hfill%
   At the undergraduate level, I have (co-)led courses in \textbf{general linguistics}, \textbf{syntax}, \textbf{semantics \& pragmatics}, \textbf{sociolinguistics}, \textbf{psycholinguistics}, and \textbf{historical linguistics}.\\
   & At the graduate level, I have led courses in \textbf{syntax}, and TA-ed for courses in \textbf{syntax}, \textbf{phonology}, and \textbf{formal foundations of linguistics} (the latter being an introduction to set theory, logic, and formal language theory for linguists).\\
   & My teaching experience covers small group and tutorial settings, larger classes, and lectures, and includes both curriculum development and the setting \& marking of exams.\\
-  & In terms of qualifications, I hold a SEDA-PDF Supporting Learning award (see above for details).\\
+  & Qualifications: I hold a \textbf{SEDA-PDF Supporting Learning award} (see above for details).\\
   & In this section, years refer to the academic calendar (e.g. 2017 = the
   2017/18 academic year).
 \end{cvsection}
@@ -518,7 +550,9 @@ $\mathcal{C}''\hfill%
 \begin{cvsection}
   2022 & \Note{\textbf{Language Change} (lectures -- group size:
     \textasciitilde{}20).}{[LING2108: Språkendring]}\\
-  2021  & \Note{\textbf{Psycholinguistics and Sociolinguistics} (lectures -- group size: \textasciitilde{}20).}{[LING1113: Psykolingvistikk og sosiolingvistikk]}
+  2021 & \Note{\textbf{Psycholinguistics and Sociolinguistics} (lectures --
+    group size: \textasciitilde{}20).}{[LING1113: Psykolingvistikk og
+    sosiolingvistikk]}
 \end{cvsection}
 
 
@@ -575,12 +609,12 @@ $\mathcal{C}''\hfill%
     2016, 2019	& \Note{%
                   \textbf{Language and identity: the view from linguistics} (class -- group size: \textasciitilde{}6).}
                   {An introduction to sociolinguistics for first year English language and literature undergraduates.\\[-0.25em]
-                  Handout available \mylink*{socio_presentation.pdf}{here}.}\\
+                  Handout available \myteachinglink*{socio_presentation.pdf}{here}.}\\
     2017        & \textbf{Corpus methods in sociolinguistics} (graduate class -- group size: 3).\\
     2016--2017, 2019 & \Note{%
                   \textbf{\LaTeX*\ workshops}: `\LaTeX*\ basics' and `Going further with \LaTeX*'.}
                   {Two workshops to introduce graduate students in linguistics to \LaTeX*.\\[-0.25em]
-                  Handouts available \mylink*{latex-basics.pdf}{here} and \mylink*{latex-going-further.pdf}{here}.}
+                  Handouts available \myteachinglink*{latex-basics.pdf}{here} and \myteachinglink*{latex-going-further.pdf}{here}.}
 \end{cvsection}
 
 % %%==========================================================================%%
@@ -761,8 +795,9 @@ $\mathcal{C}''\hfill%
 
 \cvheading{Scholarship} \label{scholarship}
 
-Where possible, clicking on a title will take you to an openly accessible version of that item. For conference presentations, I provide a link
-to the slides, handout, or poster, as appropriate.\medskip
+Where possible, clicking on a title will take you to an openly accessible
+version of that item. For conference presentations, I provide a link to the
+slides, handout, or poster, as appropriate.\medskip
 
 Number of citations is given per Google Scholar, after self-citations are
 excluded.
@@ -777,7 +812,7 @@ excluded.
 \subsection*{In Preparation}
 
 \Reff*{lfg-tag-chapter}{In press}{Jamie Y. Findlay.
-  \mylink{findlay-tag-lfg-ch-draft.pdf}{LFG and Tree Adjoining Grammar}. In Mary
+  \mydraftslink{findlay-tag-lfg-ch-draft.pdf}{LFG and Tree Adjoining Grammar}. In Mary
   Dalrymple (ed), \emph{Handbook of Lexical Functional Grammar}. Language
   Science Press.}
 
@@ -788,24 +823,24 @@ excluded.
     Representations (DMR 2023)}.}
 
 \Reff*{lfg-as-a-cxg}{Under review}{Jamie Y. Findlay.
-  \mylink{findlay-lfg-as-cxg-draft.pdf}{Lexical Functional Grammar as a
+  \mydraftslink{findlay-lfg-as-cxg-draft.pdf}{Lexical Functional Grammar as a
     Construction Grammar}. Submitted to \textit{Journal of Language Modelling}.}
 
 \Reff*{arg-str-handbook-chapter}{Under review}{Jamie Y. Findlay, Anna Kibort and
-  Roxanne Taylor. \mylink{findlay_etal-arg-str-ch-draft.pdf}{Argument structure
+  Roxanne Taylor. \mydraftslink{findlay_etal-arg-str-ch-draft.pdf}{Argument structure
     and Mapping Theory}. In Mary Dalrymple (ed.), \emph{Handbook of Lexical
     Functional Grammar}. Language Science Press.}
 
 \subsection*{Journal Articles and Book Chapters}
 
 \Reff{meaning-in-lfg-chapter}{2021}{Jamie Y. Findlay.
-  \mylink{mary-festschrift-chapter.pdf}{Meaning in LFG}. In I. Wayan Arka, Ash
+  \mypaperslink{mary-festschrift-chapter.pdf}{Meaning in LFG}. In I. Wayan Arka, Ash
   Asudeh, and Tracy Holloway King (eds.), \emph{Modular design of grammar:
     linguistics on the edge}, 340--374. Oxford University Press. \hfill[1
   citation]}
 
 \Reff{lfg-chapter}{2019}{Mary Dalrymple and Jamie Y. Findlay.
-  \mylink{dalrymple_findlay-2019-lexical_functional_grammar.pdf}{Lexical
+  \mypaperslink{dalrymple_findlay-2019-lexical_functional_grammar.pdf}{Lexical
     Functional Grammar}. In Andr\'{a}s Kert\'{e}sz, Edith Moravcsik, and Csilla
   R\'{a}kosi (eds.), \emph{Current approaches to syntax: a comparative
     handbook}, 123--154. De Gruyter Mouton. DOI:
@@ -813,7 +848,7 @@ excluded.
   \hfill[4 citations]}
 
 \Reff{house-of-lords-paper}{2017}{Jamie Y. Findlay.
-  \mylink{house_of_lords.pdf}{Unnatural acts lead to unconsummated marriages:
+  \mypaperslink{house_of_lords.pdf}{Unnatural acts lead to unconsummated marriages:
     discourses of homosexuality within the {House of Lords} debate on same-sex
     marriage}. \emph{Journal of Language and Sexuality} 6(1), 30--60. DOI:
   \href{https://doi.org/10.1075/jls.6.1.02fin}{10.1075/jls.6.1.02fin}. \hfill[17
@@ -835,10 +870,10 @@ excluded.
 \subsection*{Conference Proceedings Papers}
 
 \Reff{lsa23-proceedings}{2023}{Yoolim Kim and Jamie Y. Findlay.
-  \linkout{https://doi.org/10.3765/plsa.v8i1.553}{On the `subject' honorific
-    \textit{-si-} in Korean}. \textit{Proceedings of the Linguistic Society of
-    America (PLSA)} 8(1), 5534. DOI:
-  \href{https://doi.org/10.3765/plsa.v8i1.5534}{10.3765/plsa.v8i1.5534}}
+  \mypaperslink{kim_findlay-2023-on_the_subject_honorific_si_in_korean.pdf}{On
+    the `subject' honorific \textit{-si-} in Korean}. \textit{Proceedings of the
+    Linguistic Society of America (PLSA)} 8(1), 5534.
+  DOI: \href{https://doi.org/10.3765/plsa.v8i1.5534}{10.3765/plsa.v8i1.5534}}
 
 \Reff{unlu-udw-23}{2023}{Jamie Y. Findlay, Saeedeh Salimifar, Ahmet
   Y\i{}ld\i{}r\i{}m, and Dag T. T. Haug.
@@ -909,9 +944,9 @@ excluded.
   Linguistics and English Language Research Seminar, University of Manchester.
   \slides{manchester-lel-seminar.pdf}}
 
-\Reff*{frankfurt-seminar}{25 June, 2018}{How (not) to analyse multiword
+\Reff*{frankfurt-oberseminar-2018}{25 June, 2018}{How (not) to analyse multiword
   expressions. Presented at the Oberseminar Syntax and Semantics,
-  Goethe-Universit\"{a}t Frankfurt am Main. \slides{frankfurt-oberseminar.pdf}}
+  Goethe-Universit\"{a}t Frankfurt am Main. \slides{frankfurt-oberseminar-2018.pdf}}
 
 \Reff*{soas-seminar-2017}{31 Jan., 2017}{The pseudopassive: not so phoney after
   all. Presented at the Linguistics Departmental Seminar Series, School of
@@ -927,9 +962,9 @@ excluded.
 
 \Reff*{dmr23-talk}{20 June, 2023}{The long and the short of it: a new dataset of
   semantically annotated sentences of more natural length. Joint work with Dag
-  T. T. Haug and Ahmet Y\i{}ld\i{}r\i{}m. To be presented at the Fourth
-  International Workshop on Designing Meaning Representations (DMR 2023), Nancy,
-  France.}
+  T. T. Haug and Ahmet Y\i{}ld\i{}r\i{}m. Presented at the Fourth International
+  Workshop on Designing Meaning Representations (DMR 2023), Nancy, France.
+  \slides{dmr23-slides.pdf}}
 
 \Reff*{unlu-udw-23-talk}{11 Mar., 2023}{Rule-based semantic interpretation for
   Universal Dependencies. Joint work with Saeedeh Salimifar, Ahmet
