@@ -32,7 +32,7 @@ for publication in publications_list:
     publication['others cite count'] = others_cite_count # Add a new field to the publication saying how many non-self-citations it has
 
 # Print a list of publications in descending order of number of non-self-citations, with the total number of citations including self-citations in square brackets
-[print(f"{pub['bib']['title']}: {pub['others cite count']} [{pub['num_citations']}]") for pub in sorted(publications_list, key = lambda x: x['others cite count'], reverse = True)]
+[print(f"{pub['bib']['title']}: {pub['others cite count']} [{pub['num_citations']} total]") for pub in sorted(publications_list, key = lambda x: x['others cite count'], reverse = True)]
 
 # Print a list of publications in date order, most recent first, with non-self-citations, and total citations in square brackets
 # [print(f"{pub['bib']['title']}: {pub['others cite count']} [{pub['num_citations']}]") for pub in sorted(my_profile['publications'], key = lambda x: x['bib']['pub_year'], reverse = True)]
