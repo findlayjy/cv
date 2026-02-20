@@ -5,6 +5,17 @@ import colorama
 from colorama import Fore, Back
 colorama.init(autoreset=True)
 
+# ### Setting up the proxy ###
+# pg = ProxyGenerator()
+# # Attempt to use Tor, which is often reliable
+# success = pg.Tor_External(tor_sock_port=9050, tor_control_port=9051, tor_password='your_password')
+
+# # Fallback: if Tor fails, use the default connection (which may still be blocked)
+# if success:
+#     scholarly.use_proxy(pg)
+# else:
+#     print("Warning: Tor proxy setup failed. Proceeding without proxy, which may result in blocks.")
+    
 ### Testing efficiency ###
 # Import time module
 import time
